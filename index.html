@@ -109,6 +109,18 @@
             cursor: pointer;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
+            transition: transform 0.3s ease, max-width 0.3s ease;
+        }
+        .craftsmanship img.zoomed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.5);
+            max-width: 90vw;
+            max-height: 90vh;
+            z-index: 1000;
+            cursor: zoom-out;
+            box-shadow: 0 0 0 100vmax rgba(0,0,0,0.9);
         }
         .gallery {
             display: grid;
@@ -381,6 +393,10 @@
             .craftsmanship img {
                 max-width: 100%;
             }
+            .craftsmanship img.zoomed {
+                transform: translate(-50%, -50%) scale(1.2);
+                max-width: 95vw;
+            }
         }
         @media (max-width: 480px) {
             .intro h2, section h2 {
@@ -414,6 +430,10 @@
             .prev, .next {
                 padding: 12px;
                 font-size: 16px;
+            }
+            .craftsmanship img.zoomed {
+                transform: translate(-50%, -50%) scale(1.1);
+                max-width: 98vw;
             }
         }
     </style>
@@ -529,7 +549,7 @@
             <h2>Proces rzemieślniczy</h2>
             <p>W Zanari każda torebka to dzieło sztuki, stworzone z pasją i szacunkiem dla natury. Używamy wyłącznie najwyższej jakości drewna – brzozy, topoli, sosny oraz wyselekcjonowanych gatunków na indywidualne zamówienie – pozyskiwanego w sposób zrównoważony, aby chronić nasze lasy i minimalizować wpływ na środowisko. Tworzenie każdego elementu, to dbałość o najdrobniejsze detale, od precyzyjnego cięcia po wykończenia naturalnymi olejami, które wydobywają słoje i podkreślają piękno drewna.</p>
             <p>Nasze podejście opiera się na modnej ekologii – łączymy luksus z odpowiedzialnością. Proces produkcji minimalizuje odpady, a każdy kawałek drewna jest wykorzystywany z myślą o przyszłości planety. Inspirując się pięknem lasów, tworzymy torebki, które są nie tylko eleganckie, ale także odzwierciedlają harmonię z naturą. Wybierając Zanari, wybierasz styl, który szanuje środowisko i celebruje rzemiosło na najwyższym poziomie.</p>
-            <img src="zdjecia_pozostale/proces_rzemieslniczy1.png" alt="Proces rzemieślniczy Zanari" onclick="openModal(this)">
+            <img src="zdjecia_pozostale/proces_rzemieslniczy1.png" alt="Proces rzemieślniczy Zanari" onclick="toggleZoom(this)">
         </section>
         
         <section id="kolekcja">
@@ -554,7 +574,7 @@
                         <img src="zdjecia/torebka1b.jpg" alt="Havana Elegance smooth Satchel - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Havana Elegance smooth Satchel</h3>
-                    <p>Torebka w odcieniu Havana.<br>
+                    <p>Torebka w odcieniu Havana
 Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i klapą o prostym kroju. Subtelny odcień jasnego brązu Havana harmonizuje z naturalnym pięknem materiału, podkreślając jego autentyczność. Nowoczesne linie cięcia nadają jej wyrafinowany styl i ponadczasową elegancję. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
  styl i ponadczasową elegancję. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
 </p>
@@ -569,8 +589,8 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                         <img src="zdjecia/torebka2b.jpg" alt="Heban Total smooth Satchel - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Heban Total smooth Satchel</h3>
-                    <p>Torebka w kolorze Heban.<br>
-Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą w prostym stylu. Głęboka czerń Hebanu emanuje klasą и wyrafinowaniem, tworząc aurę ponadczasowej elegancji. Precyzyjne, nowoczesne linie cięcia podkreślają jej szykowny charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
+                    <p>Torebka w kolorze Heban
+Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą w prostym stylu. Głęboka czerń Hebanu emanuje klasą i wyrafinowaniem, tworząc aurę ponadczasowej elegancji. Precyzyjne, nowoczesne linie cięcia podkreślają jej szykowny charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
 </p>
                     <p><strong>Cena: 1500 zł</strong></p>
                     <a href="#" class="btn">Kup teraz</a>
@@ -583,7 +603,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                         <img src="zdjecia/torebka3b.jpg" alt="Natural Timber Glamour wave Satchel - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Natural Timber Glamour wave Satchel</h3>
-                    <p>Torebka w kolorze naturalnego drewna.<br>
+                    <p>Torebka w kolorze naturalnego drewna
 Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą o falującym kroju. Naturalny odcień drewna eksponuje jej organiczne pochodzenie, dodając wyjątkowego uroku. Stylowe linie cięcia w klimacie glamour akcentują ekskluzywność i wyrafinowany charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
 </p>
                     <p><strong>Cena: 1650 zł</strong></p>
@@ -601,7 +621,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                         <img src="zdjecia/torebka4b.jpg" alt="Prestige Brown smooth Clutch - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Prestige Brown smooth Clutch</h3>
-                    <p>Torebka w odcieniu Teak.<br>
+                    <p>Torebka w odcieniu Teak
 Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyrafinowanym, prostym kroju. Ciepły, złocisty odcień teku harmonizuje z naturalną fakturą drewna, subtelnie podkreślając jego autentyczne piękno. Precyzyjne, współczesne linie cięcia dodają jej ponadczasowej elegancji i wyrafinowanego stylu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
                     <p><strong>Cena: 950 zł</strong></p>
                     <a href="#" class="btn">Kup teraz</a>
@@ -614,7 +634,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyraf
                         <img src="zdjecia/torebka5b.jpg" alt="Heban Total wave Clutch - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Heban Total wave Clutch</h3>
-                    <p>Torebka w kolorze Heban.<br>
+                    <p>Torebka w kolorze Heban
 Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płynnym, falującym kroju. Głęboka, hebanowa czerń promieniuje klasą i wyrafinowaniem, tworząc aurę niepowtarzalnej elegancji. Nowoczesne, precyzyjne cięcia akcentują jej szykowny charakter, czyniąc ją kwintesencją luksusu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.
 </p>
                     <p><strong>Cena: 1250 zł</strong></p>
@@ -628,7 +648,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płyn
                         <img src="zdjecia/torebka6b.jpg" alt="Natural Timber smooth Clutch - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Natural Timber smooth Clutch</h3>
-                    <p>Torebka w kolorze naturalnego drewna.<br>
+                    <p>Torebka w kolorze naturalnego drewna
 Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasycznym, prostym kroju. Naturalny odcień drewna eksponuje jej organiczne piękno, nadając wyjątkowego, subtelnego uroku. Proste, lecz wyrafinowane cięcia podkreślają ekskluzywność i artystyczny charakter, czyniąc ją prawdziwym dziełem sztuki. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
                     <p><strong>Cena: 1100 zł</strong></p>
                     <a href="#" class="btn">Kup teraz</a>
@@ -760,6 +780,41 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             }
         }
 
+        // Funkcja do powiększania/zmniejszania obrazka procesu rzemieślniczego
+        function toggleZoom(img) {
+            img.classList.toggle('zoomed');
+            
+            if (img.classList.contains('zoomed')) {
+                // Blokujemy scrollowanie strony gdy obrazek jest powiększony
+                document.body.style.overflow = 'hidden';
+            } else {
+                // Przywracamy scrollowanie
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Zamykanie powiększonego obrazka po kliknięciu w tło
+        document.addEventListener('click', function(event) {
+            const craftsmanshipImg = document.querySelector('.craftsmanship img');
+            if (craftsmanshipImg && craftsmanshipImg.classList.contains('zoomed') && 
+                event.target !== craftsmanshipImg && 
+                !craftsmanshipImg.contains(event.target)) {
+                craftsmanshipImg.classList.remove('zoomed');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Zamykanie powiększonego obrazka klawiszem ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const craftsmanshipImg = document.querySelector('.craftsmanship img.zoomed');
+                if (craftsmanshipImg) {
+                    craftsmanshipImg.classList.remove('zoomed');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
         window.onclick = function(event) {
             const modal = document.getElementById('imageModal');
             const contactModal = document.getElementById('contactModal');
@@ -795,4 +850,3 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
     </script>
 </body>
 </html>
-
