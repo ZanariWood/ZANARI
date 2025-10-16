@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zanari - Ekskluzywne Torebki z Drewna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@400&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #4a3728;
+            color: #f8efe4;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #2f2319;
+            color: #f8efe4;
+            text-align: center;
+            padding: 2.25rem 1rem;
+        }
+        header p {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #c9a66b;
+            margin-top: 0.5rem;
+        }
+        .logo img {
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        .intro {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .intro-description {
+            flex: 1 1 40%;
+            text-align: left;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+        }
+        .intro-description h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+            color: #c9a66b;
+        }
+        .intro-description p {
+            margin-bottom: 1rem;
+        }
+        .intro-video {
+            flex: 1 1 50%;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 50%;
+            margin: 0 auto;
+        }
+        .video-container video {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            aspect-ratio: 9/16;
+            display: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            object-fit: contain;
+        }
+        .video-container video.active {
+            display: block;
+        }
+        .speaker-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .speaker-btn img {
+            width: 24px;
+            height: 24px;
+        }
+        .craftsmanship {
+            text-align: center;
+        }
+        .craftsmanship img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 1rem;
+            cursor: pointer;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+        .item {
+            background: #5c4635;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .item:hover {
+            transform: scale(1.05);
+        }
+        .item-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .item-images img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+            border-radius: 5px;
+            cursor: pointer;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        .item h3 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            margin: 0.5rem 0;
+            color: #c9a66b;
+        }
+        .item p {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        .btn {
+            display: inline-block;
+            background: #c9a66b;
+            color: #2f2319;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #b5915a;
+        }
+        section {
+            margin-bottom: 3rem;
+        }
+        section h2, section h3 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #c9a66b;
+        }
+        section h3 {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+        }
+        section ul {
+            list-style-type: disc;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        section ul li {
+            margin-bottom: 0.5rem;
+        }
+        footer {
+            background: #2f2319;
+            color: #f8efe4;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+        footer a, section#kontakt a {
+            color: #c9a66b;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+        footer a:hover, section#kontakt a:hover {
+            color: #b5915a;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            display: block;
+            margin: auto;
+            position: relative;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f8efe4;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 16px;
+            color: #f8efe4;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        .contact-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .contact-modal-content {
+            background-color: #5c4635;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #c9a66b;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            color: #f8efe4;
+        }
+        .contact-close {
+            color: #c9a66b;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .contact-close:hover, .contact-close:focus {
+            color: #b5915a;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-form input, .contact-form textarea {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border: 1px solid #c9a66b;
+            border-radius: 5px;
+            background: #4a3728;
+            color: #f8efe4;
+        }
+        .contact-form button {
+            background: #c9a66b;
+            color: #2f2319;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .contact-form button:hover {
+            background: #b5915a;
+        }
+        .contact-info {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .intro {
+                flex-direction: column;
+            }
+            .intro-description {
+                order: 1;
+                flex: 1 1 100%;
+            }
+            .intro-video {
+                order: 2;
+                flex: 1 1 100%;
+            }
+            header {
+                padding: 1.7rem 1rem;
+            }
+            .logo img {
+                max-width: 150px;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 1rem;
+            }
+            .btn {
+                padding: 0.5rem 1rem;
+            }
+            .video-container {
+                max-width: 70%;
+            }
+            .video-container video {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                aspect-ratio: 9/16;
+            }
+            .speaker-btn {
+                bottom: 8px;
+                right: 8px;
+            }
+            .item-images {
+                grid-template-columns: 1fr;
+            }
+            .item-images img {
+                max-height: 200px;
+            }
+            .contact-modal-content {
+                width: 90%;
+            }
+            .craftsmanship img {
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            .intro h2, section h2 {
+                font-size: clamp(1.5rem, 5vw, 1.8rem);
+            }
+            .logo img {
+                max-width: 120px;
+            }
+            .item {
+                padding: 0.5rem;
+            }
+            .item-images img {
+                max-height: 180px;
+            }
+            .video-container {
+                max-width: 90%;
+            }
+            .video-container video {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                aspect-ratio: 9/16;
+            }
+            .speaker-btn {
+                bottom: 6px;
+                right: 6px;
+            }
+            .prev, .next {
+                padding: 12px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo/logo.png" alt="Logo Zanari" onclick="openModal(this)">
+        </div>
+        <p>Ekskluzywne torebki z drewna – synonim elegancji i rzemiosła</p>
+    </header>
+    
+    <div class="container">
+        <section class="intro">
+            <div class="intro-description">
+                <h2>Witamy w świecie Zanari</h2>
+                <p>Dla dystyngowanych kobiet, które cenią sobie unikalność i luksus. Nasze torebki powstają z najwyższej jakości drewna, ręcznie wykonywane z dbałością o każdy detal. Każda jest wyjątkowym i niepowtarzalnym dziełem sztuki – ekologiczna, elegancka i ponadczasowa.</p>
+                <p>Wyobraź sobie, jak trzymasz w dłoni unikalny skarb natury, który podkreśla Twoją elegancję, wyjątkowość i niepowtarzalny styl. Torebka Zanari to nie tylko dodatek – to symbol Twojej siły, piękna i ponadczasowej klasy, który sprawi, że poczujesz się wyjątkowa w każdym momencie. Nie czekaj, zainwestuj w luksus, na który zasługujesz – stań się posiadaczką niepowtarzalnego dzieła sztuki, które przyciąga spojrzenia i budzi podziw.</p>
+                <a href="#kolekcja" class="btn">Odkryj kolekcję</a>
+            </div>
+            <div class="intro-video">
+                <div class="video-container">
+                    <video id="video-1" class="active" autoplay muted playsinline>
+                        <source src="film/reklama.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-1" class="speaker-btn" onclick="toggleMute(1)">
+                        <img id="speaker-icon-1" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+                    <video id="video-2" muted playsinline>
+                        <source src="film/reklama2.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-2" class="speaker-btn" onclick="toggleMute(2)" style="display: none;">
+                        <img id="speaker-icon-2" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+                    <video id="video-3" muted playsinline>
+                        <source src="film/reklama3.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-3" class="speaker-btn" onclick="toggleMute(3)" style="display: none;">
+                        <img id="speaker-icon-3" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+                    <video id="video-4" muted playsinline>
+                        <source src="film/reklama4.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-4" class="speaker-btn" onclick="toggleMute(4)" style="display: none;">
+                        <img id="speaker-icon-4" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+                    <video id="video-5" muted playsinline>
+                        <source src="film/reklama5.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-5" class="speaker-btn" onclick="toggleMute(5)" style="display: none;">
+                        <img id="speaker-icon-5" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+                    <video id="video-6" muted playsinline>
+                        <source src="film/reklama6.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-6" class="speaker-btn" onclick="toggleMute(6)" style="display: none;">
+                        <img id="speaker-icon-6" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="o-nas">
+            <h2>O nas</h2>
+            <p>Marka Zanari narodziła się z pasji do natury i elegancji. Inspirujemy się lasami, gdzie drewno symbolizuje ponadczasowe piękno i siłę. Nasze produkty są dedykowane kobietom, które pragną wyróżnić się w tłumie, podkreślić swój styl i wyjątkowość – z klasą i subtelnością.</p>
+        </section>
+        
+        <section id="proces-rzemieslniczy" class="craftsmanship">
+            <h2>Proces rzemieślniczy</h2>
+            <p>W Zanari każda torebka to dzieło sztuki, stworzone z pasją i szacunkiem dla natury. Używamy wyłącznie najwyższej jakości drewna – brzozy, topoli, sosny oraz wyselekcjonowanych gatunków na indywidualne zamówienie – pozyskiwanego w sposób zrównoważony, aby chronić nasze lasy i minimalizować wpływ na środowisko. Tworzenie każdego elementu, to dbałość o najdrobniejsze detale, od precyzyjnego cięcia po wykończenia naturalnymi olejami, które wydobywają słoje i podkreślają piękno drewna.</p>
+            <p>Nasze podejście opiera się na modnej ekologii – łączymy luksus z odpowiedzialnością. Proces produkcji minimalizuje odpady, a każdy kawałek drewna jest wykorzystywany z myślą o przyszłości planety. Inspirując się pięknem lasów, tworzymy torebki, które są nie tylko eleganckie, ale także odzwierciedlają harmonię z naturą. Wybierając Zanari, wybierasz styl, który szanuje środowisko i celebruje rzemiosło na najwyższym poziomie.</p>
+            <img src="zdjecia_pozostale/rzemioslo.jpg" alt="Proces rzemieślniczy Zanari" onclick="openModal(this)">
+        </section>
+        
+        <section id="kolekcja">
+            <h3>Twój styl na zamówienie</h3>
+            <p>Pozwól, by Twoja torebka stała się odzwierciedleniem wyrafinowanego gustu.</p>
+            <p>Wychodząc naprzeciw najbardziej wyśrubowanym oczekiwaniom, oferujemy Ci kunsztowny proces personalizacji, w którym to Ty zostajesz projektantem.</p>
+            <ul>
+                <li>Wymiary i proporcje – aby idealnie odpowiadały Twoim potrzebom.</li>
+                <li>Szlachetne zdobienia – od finezyjnych cięć po klasyczną prostotę.</li>
+                <li>Ekskluzywną personalizację – grawerunek rodowego monogramu lub unikatowego motywu.</li>
+                <li>Architekturę detalu – kształt zapięcia, profil boków – każdy element poddajemy Twojej wizji.</li>
+            </ul>
+            <p>Twój indywidualny smak i styl, zamknięty w formie niepowtarzalnego przedmiotu.</p>
+            <p><br><br></p>
+            <h2>Kolekcje</h2>
+            <h3>Satchel</h3>
+            <div class="gallery">
+                <div class="item">
+                    <div class="item-images">
+                        <img src="zdjecia/torebka1a.jpg" alt="Havana Elegance smooth Satchel" onclick="openModal(this)">
+                        <img src="zdjecia/torebka1b.jpg" alt="Havana Elegance smooth Satchel" onclick="openModal(this)">
+                    </div>
+                    <h3>Havana Elegance smooth Satchel</h3>
+                    <p>Średnia torebka z łańcuszkiem na ramię i klapą, bardzo elegancka. Wykonana z brzozy. Cena: 1500 zł</p>
+                    <a href="#" class="btn">Kup teraz</a>
+                </div>
+                <div class="item">
+                    <div class="item-images">
+                        <img src="zdjecia/torebka2a.jpg" alt="Heban Total smooth Satchel" onclick="openModal(this)">
+                        <img src="zdjecia/torebka2b.jpg" alt="Heban Total smooth Satchel" onclick="openModal(this)">
+                    </div>
+                    <h3>Heban Total smooth Satchel</h3>
+                    <p>Luksusowa torebka z łańcuszkiem i klapą, idealna na co dzień. Wykonana z hebanu na zamówienie. Cena: 1800 zł</p>
+                    <a href="#" class="btn">Kup teraz</a>
+                </div>
+                <div class="item">
+                    <div class="item-images">
+                        <img src="zdjecia/torebka3a.jpg" alt="Natural Timber Glamour wave Satchel" onclick="openModal(this)">
+                        <img src="zdjecia/torebka3b.jpg" alt="Natural Timber Glamour wave Satchel" onclick="openModal(this)">
+                    </div>
+                    <h3>Natural Timber Glamour wave Satchel</h3>
+                    <p>Elegancka torebka z łańcuszkiem, łącząca prostotę i styl. Wykonana z sosny. Cena: 1600 zł</p>
+                    <a href="#" class="btn">Kup teraz</a>
+                </div>
+            </div>
+            p><br><br></p>
+            <h3>Clutch</h3>
+            <div class="gallery">
+                <div class="item">
+                    <div class="item-images">
+                        <img src="zdjecia/torebka4a.jpg" alt="Prestige Brown smooth Clutch" onclick="openModal(this)">
+                        <img src="zdjecia/torebka4b.jpg" alt="Prestige Brown smooth Clutch" onclick="openModal(this)">
+                    </div>
+                    <h3>Prestige Brown smooth Clutch</h3>
+                    <p>Mała, elegancka torebka bez paska, idealna na wieczór. Wykonana z brzozy. Cena: 1300 zł</p>
+                    <a href="#" class="btn">Kup teraz</a>
+                </div>
+                <div class="item">
+                    <div class="item-images">
+                        <img src="zdjecia/torebka5a.jpg" alt="Heban Total wave Clutch" onclick="openModal(this)">
+                        <img src="zdjecia/torebka5b.jpg" alt="Heban Total wave Clutch" onclick="openModal(this)">
+                    </div>
+                    <h3>Heban Total wave Clutch</h3>
+                    <p>Luksusowa torebka do trzymania w dłoni, na specjalne okazje. Wykonana z hebanu na zamówienie. Cena: 1600 zł</p>
+                    <a href="#" class="btn">Kup teraz</a>
+                </div>
+                <div class="item">
+                    <div class="item-images">
+                        <img src="zdjecia/torebka6a.jpg" alt="Natural Timber smooth Clutch" onclick="openModal(this)">
+                        <img src="zdjecia/torebka6b.jpg" alt="Natural Timber smooth Clutch" onclick="openModal(this)">
+                    </div>
+                    <h3>Natural Timber smooth Clutch</h3>
+                    <p>Prosta, ale wyrafinowana torebka wieczorowa. Wykonana z sosny. Cena: 1400 zł</p>
+                    <a href="#" class="btn">Kup teraz</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="kontakt">
+            <h2><a href="#" onclick="openContactModal()">Kontakt</a></h2>
+            <p>Skontaktuj się z nami: <a href="mailto:kontakt@zanari.pl">kontakt@zanari.pl</a></p>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Zanari. Wszystkie prawa zastrzeżone.</p>
+        <p>Śledź nas: <a href="#">Instagram</a> | <a href="#">Facebook</a></p>
+    </footer>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <img class="modal-content" id="modalImage">
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <div id="contactModal" class="contact-modal">
+        <div class="contact-modal-content">
+            <span class="contact-close" onclick="closeContactModal()">&times;</span>
+            <h2>Wyślij wiadomość</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Imię" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Wiadomość" required></textarea>
+                <button type="submit">Wyślij</button>
+            </form>
+            <div class="contact-info">
+                <p>Telefon: +48 123 456 789</p>
+                <p>Adres: ul. Elegancka 1, Warszawa</p>
+                <p>Social media: Instagram, Facebook</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const videos = [
+            { video: document.getElementById('video-1'), button: document.getElementById('speaker-btn-1'), icon: document.getElementById('speaker-icon-1') },
+            { video: document.getElementById('video-2'), button: document.getElementById('speaker-btn-2'), icon: document.getElementById('speaker-icon-2') },
+            { video: document.getElementById('video-3'), button: document.getElementById('speaker-btn-3'), icon: document.getElementById('speaker-icon-3') },
+            { video: document.getElementById('video-4'), button: document.getElementById('speaker-btn-4'), icon: document.getElementById('speaker-icon-4') },
+            { video: document.getElementById('video-5'), button: document.getElementById('speaker-btn-5'), icon: document.getElementById('speaker-icon-5') },
+            { video: document.getElementById('video-6'), button: document.getElementById('speaker-btn-6'), icon: document.getElementById('speaker-icon-6') }
+        ];
+
+        let currentVideoIndex = 0;
+
+        function playNextVideo() {
+            videos[currentVideoIndex].video.classList.remove('active');
+            videos[currentVideoIndex].button.style.display = 'none';
+            currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+            videos[currentVideoIndex].video.classList.add('active');
+            videos[currentVideoIndex].button.style.display = 'block';
+            videos[currentVideoIndex].video.play();
+            videos[currentVideoIndex].video.muted = true;
+            videos[currentVideoIndex].icon.src = 'ikony/speaker-off.png';
+            videos[currentVideoIndex].icon.alt = 'Włącz dźwięk';
+        }
+
+        videos.forEach((videoObj, index) => {
+            videoObj.video.addEventListener('ended', playNextVideo);
+        });
+
+        function toggleMute(index) {
+            const videoObj = videos[index - 1];
+            videoObj.video.muted = !videoObj.video.muted;
+            if (videoObj.video.muted) {
+                videoObj.icon.src = 'ikony/speaker-off.png';
+                videoObj.icon.alt = 'Włącz dźwięk';
+            } else {
+                videoObj.icon.src = 'ikony/speaker-on.png';
+                videoObj.icon.alt = 'Wyłącz dźwięk';
+            }
+        }
+
+        let slideIndex = 0;
+        let currentImages = [];
+
+        function openModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            if (!modal || !modalImg) return;
+            modal.style.display = 'flex';
+            modalImg.src = img.src;
+
+            if (img.src.includes('logo.png')) {
+                currentImages = [document.querySelector('.logo img')];
+                slideIndex = 0;
+            } else if (img.src.includes('rzemioslo.jpg')) {
+                currentImages = [document.querySelector('.craftsmanship img')];
+                slideIndex = 0;
+            } else {
+                const itemImagesContainer = img.closest('.item-images');
+                if (itemImagesContainer) {
+                    currentImages = Array.from(itemImagesContainer.querySelectorAll('img'));
+                    slideIndex = currentImages.indexOf(img);
+                } else {
+                    currentImages = [img];
+                    slideIndex = 0;
+                }
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            if (modal) modal.style.display = 'none';
+            currentImages = [];
+            slideIndex = 0;
+        }
+
+        function plusSlides(n) {
+            slideIndex += n;
+            if (slideIndex >= currentImages.length) { slideIndex = 0; }
+            if (slideIndex < 0) { slideIndex = currentImages.length - 1; }
+            const modalImg = document.getElementById('modalImage');
+            if (modalImg && currentImages[slideIndex]) {
+                modalImg.src = currentImages[slideIndex].src;
+            }
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            const contactModal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+            if (event.target == contactModal) {
+                contactModal.style.display = 'none';
+            }
+        }
+
+        function openContactModal() {
+            const contactModal = document.getElementById('contactModal');
+            if (contactModal) contactModal.style.display = 'block';
+        }
+
+        function closeContactModal() {
+            const contactModal = document.getElementById('contactModal');
+            if (contactModal) contactModal.style.display = 'none';
+        }
+
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Proszę podać prawidłowy adres e-mail.');
+                return;
+            }
+            alert('Wiadomość wysłana!');
+            closeContactModal();
+        });
+    </script>
+</body>
+</html>
