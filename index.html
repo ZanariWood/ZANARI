@@ -6,7 +6,6 @@
     <title>Zanari - Ekskluzywne Torebki z Drewna</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@400&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* Poprzednie style bez zmian */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -67,25 +66,17 @@
             flex: 1 1 50%;
         }
         .video-container {
-        /* ... reszta stylów z Twojego kodu ... */
-
-        /* Nowy styl dla wideo w sekcji procesu rzemieślniczego */
-        .craftsmanship-video-container {
             position: relative;
             width: 100%;
             max-width: 50%;
             margin: 0 auto;
-            margin: 1rem auto;
-            text-align: center;
         }
         .video-container video {
-        .craftsmanship-video-container video {
             width: 100%;
             max-width: 100%;
             height: auto;
             aspect-ratio: 9/16;
             display: none;
-            max-height: 150px; /* 25% wysokości filmów reklamowych (przyjmując, że filmy reklamowe mają ok. 600px na większych ekranach) */
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             object-fit: contain;
@@ -357,7 +348,6 @@
                 padding: 0.5rem 1rem;
             }
             .video-container {
-            .craftsmanship-video-container {
                 max-width: 70%;
             }
             .video-container video {
@@ -381,8 +371,6 @@
             }
             .craftsmanship img {
                 max-width: 100%;
-            .craftsmanship-video-container video {
-                max-height: 100px; /* Dopasowanie wysokości dla mniejszych ekranów */
             }
         }
         @media (max-width: 480px) {
@@ -399,7 +387,6 @@
                 max-height: 180px;
             }
             .video-container {
-            .craftsmanship-video-container {
                 max-width: 90%;
             }
             .video-container video {
@@ -415,14 +402,11 @@
             .prev, .next {
                 padding: 12px;
                 font-size: 16px;
-            .craftsmanship-video-container video {
-                max-height: 80px; /* Dopasowanie wysokości dla bardzo małych ekranów */
             }
         }
     </style>
 </head>
 <body>
-    <!-- Poprzednia zawartość bez zmian -->
     <header>
         <div class="logo">
             <img src="logo/logo.png" alt="Logo Zanari" onclick="openModal(this)">
@@ -431,7 +415,6 @@
     </header>
 
     <div class="container">
-        <!-- Sekcje intro i o-nas bez zmian -->
         <section class="intro">
             <div class="intro-description">
                 <h2>Witamy w świecie Zanari</h2>
@@ -523,13 +506,11 @@
                     </button>
                 </div>
             </div>
-            <!-- ... istniejąca zawartość ... -->
         </section>
 
         <section id="o-nas">
             <h2>O nas</h2>
             <p>Marka Zanari narodziła się z pasji do natury i elegancji. Inspirujemy się lasami, gdzie drewno symbolizuje ponadczasowe piękno i siłę. Nasze produkty są dedykowane kobietom, które pragną wyróżnić się w tłumie, podkreślić swój styl i wyjątkowość – z klasą i subtelnością.</p>
-            <!-- ... istniejąca zawartość ... -->
         </section>
 
         <section id="proces-rzemieslniczy" class="craftsmanship">
@@ -537,13 +518,6 @@
             <p>W Zanari każda torebka to dzieło sztuki, stworzone z pasją i szacunkiem dla natury. Używamy wyłącznie najwyższej jakości drewna – brzozy, topoli, sosny oraz wyselekcjonowanych gatunków na indywidualne zamówienie – pozyskiwanego w sposób zrównoważony, aby chronić nasze lasy i minimalizować wpływ na środowisko. Tworzenie każdego elementu, to dbałość o najdrobniejsze detale, od precyzyjnego cięcia po wykończenia naturalnymi olejami, które wydobywają słoje i podkreślają piękno drewna.</p>
             <p>Nasze podejście opiera się na modnej ekologii – łączymy luksus z odpowiedzialnością. Proces produkcji minimalizuje odpady, a każdy kawałek drewna jest wykorzystywany z myślą o przyszłości planety. Inspirując się pięknem lasów, tworzymy torebki, które są nie tylko eleganckie, ale także odzwierciedlają harmonię z naturą. Wybierając Zanari, wybierasz styl, który szanuje środowisko i celebruje rzemiosło na najwyższym poziomie.</p>
             <img src="zdjecia_pozostale/rzemioslo.jpg" alt="Proces rzemieślniczy Zanari" onclick="openModal(this)">
-            <!-- Nowe wideo -->
-            <div class="craftsmanship-video-container">
-                <video autoplay muted loop playsinline>
-                    <source src="filmy_pozostale/proces_rzemieslniczy1.mp4" type="video/mp4">
-                    Twoja przeglądarka nie obsługuje wideo.
-                </video>
-            </div>
         </section>
 
         <section id="kolekcja">
@@ -567,6 +541,7 @@
                         <img src="zdjecia/torebka1b.jpg" alt="Havana Elegance smooth Satchel" onclick="openModal(this)">
                     </div>
                     <h3>Havana Elegance smooth Satchel</h3>
+                    <p>Średnia torebka z łańcuszkiem na ramię i klapą, bardzo elegancka. Wykonana z brzozy. Cena: 1500 zł</p>
                     <p>Średnia torebka z łańcuszkiem na ramię i klapą, bardzo elegancka. Wykonana z brzozy. Cena: 1300 zł</p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
@@ -576,6 +551,7 @@
                         <img src="zdjecia/torebka2b.jpg" alt="Heban Total smooth Satchel" onclick="openModal(this)">
                     </div>
                     <h3>Heban Total smooth Satchel</h3>
+                    <p>Luksusowa torebka z łańcuszkiem i klapą, idealna na co dzień. Wykonana z hebanu na zamówienie. Cena: 1800 zł</p>
                     <p>Luksusowa torebka z łańcuszkiem i klapą, idealna na co dzień. Wykonana z hebanu na zamówienie. Cena: 1500 zł</p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
@@ -585,6 +561,7 @@
                         <img src="zdjecia/torebka3b.jpg" alt="Natural Timber Glamour wave Satchel" onclick="openModal(this)">
                     </div>
                     <h3>Natural Timber Glamour wave Satchel</h3>
+                    <p>Elegancka torebka z łańcuszkiem, łącząca prostotę i styl. Wykonana z sosny. Cena: 1600 zł</p>
                     <p>Elegancka torebka z łańcuszkiem, łącząca prostotę i styl. Wykonana z sosny. Cena: 1650 zł</p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
@@ -598,6 +575,7 @@
                         <img src="zdjecia/torebka4b.jpg" alt="Prestige Brown smooth Clutch" onclick="openModal(this)">
                     </div>
                     <h3>Prestige Brown smooth Clutch</h3>
+                    <p>Mała, elegancka torebka bez paska, idealna na wieczór. Wykonana z brzozy. Cena: 1300 zł</p>
                     <p>Mała, elegancka torebka bez paska, idealna na wieczór. Wykonana z brzozy. Cena: 950 zł</p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
@@ -607,6 +585,7 @@
                         <img src="zdjecia/torebka5b.jpg" alt="Heban Total wave Clutch" onclick="openModal(this)">
                     </div>
                     <h3>Heban Total wave Clutch</h3>
+                    <p>Luksusowa torebka do trzymania w dłoni, na specjalne okazje. Wykonana z hebanu na zamówienie. Cena: 1600 zł</p>
                     <p>Luksusowa torebka do trzymania w dłoni, na specjalne okazje. Wykonana z hebanu na zamówienie. Cena: 1250 zł</p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
@@ -616,17 +595,16 @@
                         <img src="zdjecia/torebka6b.jpg" alt="Natural Timber smooth Clutch" onclick="openModal(this)">
                     </div>
                     <h3>Natural Timber smooth Clutch</h3>
+                    <p>Prosta, ale wyrafinowana torebka wieczorowa. Wykonana z sosny. Cena: 1400 zł</p>
                     <p>Prosta, ale wyrafinowana torebka wieczorowa. Wykonana z sosny. Cena: 1100 zł</p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
             </div>
-            <!-- ... reszta sekcji kolekcja bez zmian ... -->
         </section>
 
         <section id="kontakt">
             <h2><a href="#" onclick="openContactModal()">Kontakt</a></h2>
             <p>Skontaktuj się z nami: <a href="mailto:zanariwood@gmail.com">zanariwood@gmail.com</a></p>
-            <!-- ... istniejąca zawartość ... -->
         </section>
     </div>
 
@@ -635,13 +613,11 @@
         <p>Śledź nas: <a href="#">Instagram</a> | <a href="#">Facebook</a></p>
     </footer>
 
-    <!-- Modale i skrypty bez zmian -->
     <div id="imageModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <img class="modal-content" id="modalImage">
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        <!-- ... istniejąca zawartość ... -->
     </div>
 
     <div id="contactModal" class="contact-modal">
@@ -660,11 +636,9 @@
                 <p>Social media: Instagram, Facebook</p>
             </div>
         </div>
-        <!-- ... istniejąca zawartość ... -->
     </div>
 
     <script>
-        // Skrypt bez zmian
         const videos = [
             { video: document.getElementById('video-1'), button: document.getElementById('speaker-btn-1'), icon: document.getElementById('speaker-icon-1') },
             { video: document.getElementById('video-2'), button: document.getElementById('speaker-btn-2'), icon: document.getElementById('speaker-icon-2') },
