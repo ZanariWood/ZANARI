@@ -109,17 +109,22 @@
             cursor: pointer;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
-            transition: transform 0.3s ease, max-width 0.3s ease;
+            transition: all 0.3s ease;
         }
         .craftsmanship img.zoomed {
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(1.5);
+            transform: translate(-50%, -50%);
             max-width: 90vw;
             max-height: 90vh;
+            width: auto;
+            height: auto;
             z-index: 1000;
             cursor: zoom-out;
+            background: rgba(0,0,0,0.9);
+            padding: 20px;
+            border-radius: 10px;
             box-shadow: 0 0 0 100vmax rgba(0,0,0,0.9);
         }
         .gallery {
@@ -394,8 +399,11 @@
                 max-width: 100%;
             }
             .craftsmanship img.zoomed {
-                transform: translate(-50%, -50%) scale(1.2);
                 max-width: 95vw;
+                max-height: 80vh;
+                width: auto;
+                height: auto;
+                padding: 15px;
             }
         }
         @media (max-width: 480px) {
@@ -432,8 +440,19 @@
                 font-size: 16px;
             }
             .craftsmanship img.zoomed {
-                transform: translate(-50%, -50%) scale(1.1);
                 max-width: 98vw;
+                max-height: 85vh;
+                padding: 10px;
+            }
+        }
+        /* Dodatkowe style dla urządzeń dotykowych */
+        @media (hover: none) and (pointer: coarse) {
+            .craftsmanship img.zoomed {
+                max-width: 95vw;
+                max-height: 80vh;
+                width: auto;
+                height: auto;
+                touch-action: none;
             }
         }
     </style>
@@ -787,22 +806,26 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             if (img.classList.contains('zoomed')) {
                 // Blokujemy scrollowanie strony gdy obrazek jest powiększony
                 document.body.style.overflow = 'hidden';
+                // Dodajemy możliwość zamknięcia przez dotknięcie gdziekolwiek
+                setTimeout(() => {
+                    document.addEventListener('click', closeZoomOnClick);
+                }, 100);
             } else {
                 // Przywracamy scrollowanie
                 document.body.style.overflow = 'auto';
+                // Usuwamy listener
+                document.removeEventListener('click', closeZoomOnClick);
             }
         }
 
-        // Zamykanie powiększonego obrazka po kliknięciu w tło
-        document.addEventListener('click', function(event) {
-            const craftsmanshipImg = document.querySelector('.craftsmanship img');
-            if (craftsmanshipImg && craftsmanshipImg.classList.contains('zoomed') && 
-                event.target !== craftsmanshipImg && 
-                !craftsmanshipImg.contains(event.target)) {
+        function closeZoomOnClick(event) {
+            const craftsmanshipImg = document.querySelector('.craftsmanship img.zoomed');
+            if (craftsmanshipImg && !craftsmanshipImg.contains(event.target)) {
                 craftsmanshipImg.classList.remove('zoomed');
                 document.body.style.overflow = 'auto';
+                document.removeEventListener('click', closeZoomOnClick);
             }
-        });
+        }
 
         // Zamykanie powiększonego obrazka klawiszem ESC
         document.addEventListener('keydown', function(event) {
@@ -811,6 +834,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 if (craftsmanshipImg) {
                     craftsmanshipImg.classList.remove('zoomed');
                     document.body.style.overflow = 'auto';
+                    document.removeEventListener('click', closeZoomOnClick);
                 }
             }
         });
