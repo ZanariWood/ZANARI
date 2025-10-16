@@ -112,44 +112,51 @@
         }
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             padding: 1rem;
         }
         .item {
             background: #5c4635;
-            padding: 1rem;
+            padding: 1.5rem;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             text-align: center;
             transition: transform 0.3s ease;
+            border-radius: 8px;
         }
         .item:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         .item-images {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1rem;
         }
         .item-images img {
             width: 100%;
-            max-height: 250px;
+            height: 200px;
             object-fit: cover;
-            aspect-ratio: 4/3;
+            aspect-ratio: 3/4;
             border-radius: 5px;
             cursor: pointer;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
+            transition: transform 0.3s ease;
+        }
+        .item-images img:hover {
+            transform: scale(1.05);
         }
         .item h3 {
             font-family: 'Cinzel', serif;
             font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-            margin: 0.5rem 0;
+            margin: 1rem 0 0.5rem 0;
             color: #c9a66b;
         }
         .item p {
             font-size: clamp(0.9rem, 2vw, 1rem);
+            margin-bottom: 1rem;
+            line-height: 1.5;
         }
         .btn {
             display: inline-block;
@@ -161,6 +168,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(0.9rem, 2vw, 1rem);
             transition: background 0.3s ease;
+            font-weight: 500;
         }
         .btn:hover {
             background: #b5915a;
@@ -340,6 +348,7 @@
             }
             .gallery {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             .container {
                 padding: 1rem;
@@ -361,10 +370,10 @@
                 right: 8px;
             }
             .item-images {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
             .item-images img {
-                max-height: 200px;
+                height: 180px;
             }
             .contact-modal-content {
                 width: 90%;
@@ -381,10 +390,13 @@
                 max-width: 120px;
             }
             .item {
-                padding: 0.5rem;
+                padding: 1rem;
+            }
+            .item-images {
+                grid-template-columns: 1fr;
             }
             .item-images img {
-                max-height: 180px;
+                height: 220px;
             }
             .video-container {
                 max-width: 90%;
@@ -413,7 +425,7 @@
         </div>
         <p>Ekskluzywne torebki z drewna – synonim elegancji i rzemiosła</p>
     </header>
-
+    
     <div class="container">
         <section class="intro">
             <div class="intro-description">
@@ -507,19 +519,19 @@
                 </div>
             </div>
         </section>
-
+        
         <section id="o-nas">
             <h2>O nas</h2>
             <p>Marka Zanari narodziła się z pasji do natury i elegancji. Inspirujemy się lasami, gdzie drewno symbolizuje ponadczasowe piękno i siłę. Nasze produkty są dedykowane kobietom, które pragną wyróżnić się w tłumie, podkreślić swój styl i wyjątkowość – z klasą i subtelnością.</p>
         </section>
-
+        
         <section id="proces-rzemieslniczy" class="craftsmanship">
             <h2>Proces rzemieślniczy</h2>
             <p>W Zanari każda torebka to dzieło sztuki, stworzone z pasją i szacunkiem dla natury. Używamy wyłącznie najwyższej jakości drewna – brzozy, topoli, sosny oraz wyselekcjonowanych gatunków na indywidualne zamówienie – pozyskiwanego w sposób zrównoważony, aby chronić nasze lasy i minimalizować wpływ na środowisko. Tworzenie każdego elementu, to dbałość o najdrobniejsze detale, od precyzyjnego cięcia po wykończenia naturalnymi olejami, które wydobywają słoje i podkreślają piękno drewna.</p>
             <p>Nasze podejście opiera się na modnej ekologii – łączymy luksus z odpowiedzialnością. Proces produkcji minimalizuje odpady, a każdy kawałek drewna jest wykorzystywany z myślą o przyszłości planety. Inspirując się pięknem lasów, tworzymy torebki, które są nie tylko eleganckie, ale także odzwierciedlają harmonię z naturą. Wybierając Zanari, wybierasz styl, który szanuje środowisko i celebruje rzemiosło na najwyższym poziomie.</p>
             <img src="zdjecia_pozostale/rzemioslo.jpg" alt="Proces rzemieślniczy Zanari" onclick="openModal(this)">
         </section>
-
+        
         <section id="kolekcja">
             <h3>Twój styl na zamówienie</h3>
             <p>Pozwól, by Twoja torebka stała się odzwierciedleniem wyrafinowanego gustu.</p>
@@ -535,79 +547,90 @@
             <h2>Kolekcje</h2>
             <h3>Satchel</h3>
             <div class="gallery">
+                <!-- Torebka 1 - Havana Elegance smooth Satchel -->
                 <div class="item">
                     <div class="item-images">
-                        <img src="zdjecia/torebka1a.jpg" alt="Havana Elegance smooth Satchel" onclick="openModal(this)">
-                        <img src="zdjecia/torebka1b.jpg" alt="Havana Elegance smooth Satchel" onclick="openModal(this)">
+                        <img src="zdjecia/torebka1a.jpg" alt="Havana Elegance smooth Satchel - widok 1" onclick="openModal(this)">
+                        <img src="zdjecia/torebka1b.jpg" alt="Havana Elegance smooth Satchel - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Havana Elegance smooth Satchel</h3>
-                    <p>Średnia torebka z łańcuszkiem na ramię i klapą, bardzo elegancka. Wykonana z brzozy. Cena: 1500 zł</p>
-                    <p>Średnia torebka z łańcuszkiem na ramię i klapą, bardzo elegancka. Wykonana z brzozy. Cena: 1300 zł</p>
+                    <p>Średnia torebka z łańcuszkiem na ramię i klapą, bardzo elegancka. Wykonana z brzozy.</p>
+                    <p><strong>Cena: 1300 zł</strong></p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
+                
+                <!-- Torebka 2 - Heban Total smooth Satchel -->
                 <div class="item">
                     <div class="item-images">
-                        <img src="zdjecia/torebka2a.jpg" alt="Heban Total smooth Satchel" onclick="openModal(this)">
-                        <img src="zdjecia/torebka2b.jpg" alt="Heban Total smooth Satchel" onclick="openModal(this)">
+                        <img src="zdjecia/torebka2a.jpg" alt="Heban Total smooth Satchel - widok 1" onclick="openModal(this)">
+                        <img src="zdjecia/torebka2b.jpg" alt="Heban Total smooth Satchel - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Heban Total smooth Satchel</h3>
-                    <p>Luksusowa torebka z łańcuszkiem i klapą, idealna na co dzień. Wykonana z hebanu na zamówienie. Cena: 1800 zł</p>
-                    <p>Luksusowa torebka z łańcuszkiem i klapą, idealna na co dzień. Wykonana z hebanu na zamówienie. Cena: 1500 zł</p>
+                    <p>Luksusowa torebka z łańcuszkiem i klapą, idealna na co dzień. Wykonana z hebanu na zamówienie.</p>
+                    <p><strong>Cena: 1500 zł</strong></p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
+                
+                <!-- Torebka 3 - Natural Timber Glamour wave Satchel -->
                 <div class="item">
                     <div class="item-images">
-                        <img src="zdjecia/torebka3a.jpg" alt="Natural Timber Glamour wave Satchel" onclick="openModal(this)">
-                        <img src="zdjecia/torebka3b.jpg" alt="Natural Timber Glamour wave Satchel" onclick="openModal(this)">
+                        <img src="zdjecia/torebka3a.jpg" alt="Natural Timber Glamour wave Satchel - widok 1" onclick="openModal(this)">
+                        <img src="zdjecia/torebka3b.jpg" alt="Natural Timber Glamour wave Satchel - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Natural Timber Glamour wave Satchel</h3>
-                    <p>Elegancka torebka z łańcuszkiem, łącząca prostotę i styl. Wykonana z sosny. Cena: 1600 zł</p>
-                    <p>Elegancka torebka z łańcuszkiem, łącząca prostotę i styl. Wykonana z sosny. Cena: 1650 zł</p>
+                    <p>Elegancka torebka z łańcuszkiem, łącząca prostotę i styl. Wykonana z sosny.</p>
+                    <p><strong>Cena: 1650 zł</strong></p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
             </div>
+            
             <p><br><br></p>
             <h3>Clutch</h3>
             <div class="gallery">
+                <!-- Torebka 4 - Prestige Brown smooth Clutch -->
                 <div class="item">
                     <div class="item-images">
-                        <img src="zdjecia/torebka4a.jpg" alt="Prestige Brown smooth Clutch" onclick="openModal(this)">
-                        <img src="zdjecia/torebka4b.jpg" alt="Prestige Brown smooth Clutch" onclick="openModal(this)">
+                        <img src="zdjecia/torebka4a.jpg" alt="Prestige Brown smooth Clutch - widok 1" onclick="openModal(this)">
+                        <img src="zdjecia/torebka4b.jpg" alt="Prestige Brown smooth Clutch - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Prestige Brown smooth Clutch</h3>
-                    <p>Mała, elegancka torebka bez paska, idealna na wieczór. Wykonana z brzozy. Cena: 1300 zł</p>
-                    <p>Mała, elegancka torebka bez paska, idealna na wieczór. Wykonana z brzozy. Cena: 950 zł</p>
+                    <p>Mała, elegancka torebka bez paska, idealna na wieczór. Wykonana z brzozy.</p>
+                    <p><strong>Cena: 950 zł</strong></p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
+                
+                <!-- Torebka 5 - Heban Total wave Clutch -->
                 <div class="item">
                     <div class="item-images">
-                        <img src="zdjecia/torebka5a.jpg" alt="Heban Total wave Clutch" onclick="openModal(this)">
-                        <img src="zdjecia/torebka5b.jpg" alt="Heban Total wave Clutch" onclick="openModal(this)">
+                        <img src="zdjecia/torebka5a.jpg" alt="Heban Total wave Clutch - widok 1" onclick="openModal(this)">
+                        <img src="zdjecia/torebka5b.jpg" alt="Heban Total wave Clutch - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Heban Total wave Clutch</h3>
-                    <p>Luksusowa torebka do trzymania w dłoni, na specjalne okazje. Wykonana z hebanu na zamówienie. Cena: 1600 zł</p>
-                    <p>Luksusowa torebka do trzymania w dłoni, na specjalne okazje. Wykonana z hebanu na zamówienie. Cena: 1250 zł</p>
+                    <p>Luksusowa torebka do trzymania w dłoni, na specjalne okazje. Wykonana z hebanu na zamówienie.</p>
+                    <p><strong>Cena: 1250 zł</strong></p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
+                
+                <!-- Torebka 6 - Natural Timber smooth Clutch -->
                 <div class="item">
                     <div class="item-images">
-                        <img src="zdjecia/torebka6a.jpg" alt="Natural Timber smooth Clutch" onclick="openModal(this)">
-                        <img src="zdjecia/torebka6b.jpg" alt="Natural Timber smooth Clutch" onclick="openModal(this)">
+                        <img src="zdjecia/torebka6a.jpg" alt="Natural Timber smooth Clutch - widok 1" onclick="openModal(this)">
+                        <img src="zdjecia/torebka6b.jpg" alt="Natural Timber smooth Clutch - widok 2" onclick="openModal(this)">
                     </div>
                     <h3>Natural Timber smooth Clutch</h3>
-                    <p>Prosta, ale wyrafinowana torebka wieczorowa. Wykonana z sosny. Cena: 1400 zł</p>
-                    <p>Prosta, ale wyrafinowana torebka wieczorowa. Wykonana z sosny. Cena: 1100 zł</p>
+                    <p>Prosta, ale wyrafinowana torebka wieczorowa. Wykonana z sosny.</p>
+                    <p><strong>Cena: 1100 zł</strong></p>
                     <a href="#" class="btn">Kup teraz</a>
                 </div>
             </div>
         </section>
-
+        
         <section id="kontakt">
             <h2><a href="#" onclick="openContactModal()">Kontakt</a></h2>
             <p>Skontaktuj się z nami: <a href="mailto:zanariwood@gmail.com">zanariwood@gmail.com</a></p>
         </section>
     </div>
-
+    
     <footer>
         <p>&copy; 2025 Zanari. Wszystkie prawa zastrzeżone.</p>
         <p>Śledź nas: <a href="#">Instagram</a> | <a href="#">Facebook</a></p>
