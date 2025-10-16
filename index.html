@@ -419,11 +419,12 @@
             <div class="intro-description">
                 <h2>Witamy w świecie Zanari</h2>
                 <p>Dla dystyngowanych kobiet, które cenią sobie unikalność i luksus. Nasze torebki powstają z najwyższej jakości drewna, ręcznie wykonywane z dbałością o każdy detal. Każda jest wyjątkowym i niepowtarzalnym dziełem sztuki – ekologiczna, elegancka i ponadczasowa.</p>
-                <p>Wyobraź sobie, jak trzymasz w dłoni unikalny skarb natury, który podkreśla Twoją elegancję, wyjątkowość i niepowtarzalny styl. Torebka Zanari to nie tylko dodatek – to symbol Twojej siły, piękna i ponadczasowej klasy, który sprawi, że poczujesz się wyjątkowa w każdym momencie. Nie czekaj, zainwestuj w luksus, na który zasługujesz – stań się posiadaczką niepowtarzalnego dzieła sztuki, które przyciąga spojrzenia i budzi podziw.</p>
+                <p>Wyobraź sobie, jak trzymasz w dłoni unikalny skarb natury, który podkreśla Twoją elegancję, wyjątkowość i niepowtarzalny styl. Torebka Zanari to nie tylko dodatek – to symbol Twojej siły, piękna i ponadczasowej klasy, który sprawi, że poczujesz się wyjątkowa w każdym momente. Nie czekaj, zainwestuj w luksus, na który zasługujesz – stań się posiadaczką niepowtarzalnego dzieła sztuki, które przyciąga spojrzenia i budzi podziw.</p>
                 <a href="#kolekcja" class="btn">Odkryj kolekcję</a>
             </div>
             <div class="intro-video">
                 <div class="video-container">
+                    <!-- Film 1 -->
                     <video id="video-1" class="active" autoplay muted playsinline>
                         <source src="film/reklama1.mp4" type="video/mp4">
                         Twoja przeglądarka nie obsługuje wideo.
@@ -431,6 +432,8 @@
                     <button id="speaker-btn-1" class="speaker-btn" onclick="toggleMute(1)">
                         <img id="speaker-icon-1" src="ikony/speaker-off.png" alt="Włącz dźwięk">
                     </button>
+
+                    <!-- Film 2 -->
                     <video id="video-2" muted playsinline>
                         <source src="film/reklama2.mp4" type="video/mp4">
                         Twoja przeglądarka nie obsługuje wideo.
@@ -438,6 +441,8 @@
                     <button id="speaker-btn-2" class="speaker-btn" onclick="toggleMute(2)" style="display: none;">
                         <img id="speaker-icon-2" src="ikony/speaker-off.png" alt="Włącz dźwięk">
                     </button>
+
+                    <!-- Film 3 -->
                     <video id="video-3" muted playsinline>
                         <source src="film/reklama3.mp4" type="video/mp4">
                         Twoja przeglądarka nie obsługuje wideo.
@@ -445,6 +450,8 @@
                     <button id="speaker-btn-3" class="speaker-btn" onclick="toggleMute(3)" style="display: none;">
                         <img id="speaker-icon-3" src="ikony/speaker-off.png" alt="Włącz dźwięk">
                     </button>
+
+                    <!-- Film 4 -->
                     <video id="video-4" muted playsinline>
                         <source src="film/reklama4.mp4" type="video/mp4">
                         Twoja przeglądarka nie obsługuje wideo.
@@ -452,6 +459,8 @@
                     <button id="speaker-btn-4" class="speaker-btn" onclick="toggleMute(4)" style="display: none;">
                         <img id="speaker-icon-4" src="ikony/speaker-off.png" alt="Włącz dźwięk">
                     </button>
+
+                    <!-- Film 5 -->
                     <video id="video-5" muted playsinline>
                         <source src="film/reklama5.mp4" type="video/mp4">
                         Twoja przeglądarka nie obsługuje wideo.
@@ -459,12 +468,41 @@
                     <button id="speaker-btn-5" class="speaker-btn" onclick="toggleMute(5)" style="display: none;">
                         <img id="speaker-icon-5" src="ikony/speaker-off.png" alt="Włącz dźwięk">
                     </button>
+
+                    <!-- Film 6 -->
                     <video id="video-6" muted playsinline>
                         <source src="film/reklama6.mp4" type="video/mp4">
                         Twoja przeglądarka nie obsługuje wideo.
                     </video>
                     <button id="speaker-btn-6" class="speaker-btn" onclick="toggleMute(6)" style="display: none;">
                         <img id="speaker-icon-6" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+
+                    <!-- Film 7 -->
+                    <video id="video-7" muted playsinline>
+                        <source src="film/reklama7.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-7" class="speaker-btn" onclick="toggleMute(7)" style="display: none;">
+                        <img id="speaker-icon-7" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+
+                    <!-- Film 8 -->
+                    <video id="video-8" muted playsinline>
+                        <source src="film/reklama8.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-8" class="speaker-btn" onclick="toggleMute(8)" style="display: none;">
+                        <img id="speaker-icon-8" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+
+                    <!-- Film 9 -->
+                    <video id="video-9" muted playsinline>
+                        <source src="film/reklama9.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-9" class="speaker-btn" onclick="toggleMute(9)" style="display: none;">
+                        <img id="speaker-icon-9" src="ikony/speaker-off.png" alt="Włącz dźwięk">
                     </button>
                 </div>
             </div>
@@ -601,7 +639,10 @@
             { video: document.getElementById('video-3'), button: document.getElementById('speaker-btn-3'), icon: document.getElementById('speaker-icon-3') },
             { video: document.getElementById('video-4'), button: document.getElementById('speaker-btn-4'), icon: document.getElementById('speaker-icon-4') },
             { video: document.getElementById('video-5'), button: document.getElementById('speaker-btn-5'), icon: document.getElementById('speaker-icon-5') },
-            { video: document.getElementById('video-6'), button: document.getElementById('speaker-btn-6'), icon: document.getElementById('speaker-icon-6') }
+            { video: document.getElementById('video-6'), button: document.getElementById('speaker-btn-6'), icon: document.getElementById('speaker-icon-6') },
+            { video: document.getElementById('video-7'), button: document.getElementById('speaker-btn-7'), icon: document.getElementById('speaker-icon-7') },
+            { video: document.getElementById('video-8'), button: document.getElementById('speaker-btn-8'), icon: document.getElementById('speaker-icon-8') },
+            { video: document.getElementById('video-9'), button: document.getElementById('speaker-btn-9'), icon: document.getElementById('speaker-icon-9') }
         ];
 
         let currentVideoIndex = 0;
