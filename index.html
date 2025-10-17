@@ -173,6 +173,20 @@
         .additional-images.active {
             display: grid;
         }
+        .additional-images img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+            border-radius: 5px;
+            cursor: pointer;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transition: transform 0.3s ease;
+        }
+        .additional-images img:hover {
+            transform: scale(1.05);
+        }
         .item h3 {
             font-family: 'Cinzel', serif;
             font-size: clamp(1.2rem, 2.5vw, 1.5rem);
@@ -614,8 +628,7 @@
                         <img src="zdjecia/torebka1b.jpg" alt="Havana Elegance smooth Satchel - widok 2" onclick="openModal(this)">
                     </div>
                     <div class="additional-images" id="additional-1">
-                        <img src="zdjecia/torebka1c.jpg" alt="Havana Elegance smooth Satchel - widok 3" onclick="openModal(this)">
-                        <img src="zdjecia/torebka1d.jpg" alt="Havana Elegance smooth Satchel - widok 4" onclick="openModal(this)">
+                        <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Havana Elegance smooth Satchel</h3>
                     <p>Torebka w odcieniu Havana
@@ -633,8 +646,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                         <img src="zdjecia/torebka2b.jpg" alt="Heban Total smooth Satchel - widok 2" onclick="openModal(this)">
                     </div>
                     <div class="additional-images" id="additional-2">
-                        <img src="zdjecia/torebka2c.jpg" alt="Heban Total smooth Satchel - widok 3" onclick="openModal(this)">
-                        <img src="zdjecia/torebka2d.jpg" alt="Heban Total smooth Satchel - widok 4" onclick="openModal(this)">
+                        <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Heban Total smooth Satchel</h3>
                     <p>Torebka w kolorze Heban
@@ -651,8 +663,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                         <img src="zdjecia/torebka3b.jpg" alt="Natural Timber Glamour wave Satchel - widok 2" onclick="openModal(this)">
                     </div>
                     <div class="additional-images" id="additional-3">
-                        <img src="zdjecia/torebka3c.jpg" alt="Natural Timber Glamour wave Satchel - widok 3" onclick="openModal(this)">
-                        <img src="zdjecia/torebka3d.jpg" alt="Natural Timber Glamour wave Satchel - widok 4" onclick="openModal(this)">
+                        <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Natural Timber Glamour wave Satchel</h3>
                     <p>Torebka w kolorze naturalnego drewna
@@ -673,8 +684,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                         <img src="zdjecia/torebka4b.jpg" alt="Prestige Brown smooth Clutch - widok 2" onclick="openModal(this)">
                     </div>
                     <div class="additional-images" id="additional-4">
-                        <img src="zdjecia/torebka4c.jpg" alt="Prestige Brown smooth Clutch - widok 3" onclick="openModal(this)">
-                        <img src="zdjecia/torebka4d.jpg" alt="Prestige Brown smooth Clutch - widok 4" onclick="openModal(this)">
+                        <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Prestige Brown smooth Clutch</h3>
                     <p>Torebka w odcieniu Teak
@@ -690,8 +700,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyraf
                         <img src="zdjecia/torebka5b.jpg" alt="Heban Total wave Clutch - widok 2" onclick="openModal(this)">
                     </div>
                     <div class="additional-images" id="additional-5">
-                        <img src="zdjecia/torebka5c.jpg" alt="Heban Total wave Clutch - widok 3" onclick="openModal(this)">
-                        <img src="zdjecia/torebka5d.jpg" alt="Heban Total wave Clutch - widok 4" onclick="openModal(this)">
+                        <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Heban Total wave Clutch</h3>
                     <p>Torebka w kolorze Heban
@@ -708,8 +717,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płyn
                         <img src="zdjecia/torebka6b.jpg" alt="Natural Timber smooth Clutch - widok 2" onclick="openModal(this)">
                     </div>
                     <div class="additional-images" id="additional-6">
-                        <img src="zdjecia/torebka6c.jpg" alt="Natural Timber smooth Clutch - widok 3" onclick="openModal(this)">
-                        <img src="zdjecia/torebka6d.jpg" alt="Natural Timber smooth Clutch - widok 4" onclick="openModal(this)">
+                        <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Natural Timber smooth Clutch</h3>
                     <p>Torebka w kolorze naturalnego drewna
@@ -802,15 +810,69 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         let slideIndex = 0;
         let currentImages = [];
 
+        // Funkcja do sprawdzania czy obrazek istnieje
+        function imageExists(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+        }
+
+        // Funkcja do ładowania dodatkowych zdjęć
+        async function loadAdditionalImages() {
+            const items = document.querySelectorAll('.item');
+            
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                const additionalContainer = item.querySelector('.additional-images');
+                const baseImageSrc = item.querySelector('.item-images img').src;
+                
+                // Pobierz bazową nazwę pliku (bez rozszerzenia i ostatniej litery)
+                const basePath = baseImageSrc.substring(0, baseImageSrc.lastIndexOf('.'));
+                const baseName = basePath.substring(0, basePath.length - 1); // Usuń ostatnią literę (a/b)
+                
+                // Sprawdź czy istnieją zdjęcia *c i *d
+                const imageC = baseName + 'c.jpg';
+                const imageD = baseName + 'd.jpg';
+                
+                // Sprawdź które zdjęcia istnieją
+                const [existsC, existsD] = await Promise.all([
+                    imageExists(imageC),
+                    imageExists(imageD)
+                ]);
+                
+                // Dodaj tylko te zdjęcia które istnieją
+                if (existsC) {
+                    const imgC = document.createElement('img');
+                    imgC.src = imageC;
+                    imgC.alt = additionalContainer.previousElementSibling.querySelector('img').alt.replace('widok 1', 'widok 3').replace('widok 2', 'widok 3');
+                    imgC.onclick = function() { openModal(this); };
+                    additionalContainer.appendChild(imgC);
+                }
+                
+                if (existsD) {
+                    const imgD = document.createElement('img');
+                    imgD.src = imageD;
+                    imgD.alt = additionalContainer.previousElementSibling.querySelector('img').alt.replace('widok 1', 'widok 4').replace('widok 2', 'widok 4');
+                    imgD.onclick = function() { openModal(this); };
+                    additionalContainer.appendChild(imgD);
+                }
+                
+                // Jeśli nie ma żadnych dodatkowych zdjęć, ukryj kontener
+                if (!existsC && !existsD) {
+                    additionalContainer.style.display = 'none';
+                }
+            }
+        }
+
         function openModal(img) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             if (!modal || !modalImg) return;
             modal.style.display = 'flex';
             modalImg.src = img.src;
-
-            // Pokaż dodatkowe zdjęcia dla tego produktu
-            showAdditionalImages(img);
 
             if (img.src.includes('logo.png')) {
                 currentImages = [document.querySelector('.logo img')];
@@ -829,20 +891,24 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                     slideIndex = 0;
                 }
             }
+            
+            // Pokaż dodatkowe zdjęcia TYLKO w modalnej galerii
+            showAdditionalImagesInModal(img);
         }
 
-        function showAdditionalImages(clickedImg) {
-            // Ukryj wszystkie dodatkowe zdjęcia
+        function showAdditionalImagesInModal(clickedImg) {
+            // Ukryj wszystkie dodatkowe zdjęcia na stronie głównej
             document.querySelectorAll('.additional-images').forEach(el => {
                 el.classList.remove('active');
             });
             
-            // Pokaż dodatkowe zdjęcia dla klikniętego produktu
+            // Pokaż dodatkowe zdjęcia tylko dla klikniętego produktu W MODALU
             const item = clickedImg.closest('.item');
             if (item) {
                 const additionalImages = item.querySelector('.additional-images');
-                if (additionalImages) {
-                    additionalImages.classList.add('active');
+                if (additionalImages && additionalImages.children.length > 0) {
+                    // Dodaj dodatkowe zdjęcia do currentImages dla nawigacji w modal
+                    // (to już jest zrobione w openModal)
                 }
             }
         }
@@ -852,6 +918,11 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             if (modal) modal.style.display = 'none';
             currentImages = [];
             slideIndex = 0;
+            
+            // Ukryj wszystkie dodatkowe zdjęcia po zamknięciu modala
+            document.querySelectorAll('.additional-images').forEach(el => {
+                el.classList.remove('active');
+            });
         }
 
         function plusSlides(n) {
@@ -935,6 +1006,11 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             }
             alert('Wiadomość wysłana!');
             closeContactModal();
+        });
+
+        // Załaduj dodatkowe zdjęcia po załadowaniu strony
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAdditionalImages();
         });
     </script>
 </body>
