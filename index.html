@@ -488,6 +488,13 @@
             margin-bottom: 1.5rem;
             font-style: italic;
         }
+        .order-modal-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #c9a66b;
+        }
         @media (max-width: 768px) {
             .intro {
                 flex-direction: column;
@@ -769,7 +776,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
  styl i ponadczasową elegancję. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
 </p>
                     <p><strong>Cena: 1300 zł</strong></p>
-                    <button class="btn" onclick="openOrderModal('Havana Elegance smooth Satchel')">Zamów</button>
+                    <button class="btn" onclick="openOrderModal('Havana Elegance smooth Satchel')">Sprawdź dostępność</button>
                 </div>
                 
                 <!-- Torebka 2 - Heban Total smooth Satchel -->
@@ -786,7 +793,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
 Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą w prostym stylu. Głęboka czerń Hebanu emanuje klasą i wyrafinowaniem, tworząc aurę ponadczasowej elegancji. Precyzyjne, nowoczesne linie cięcia podkreślają jej szykowny charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
 </p>
                     <p><strong>Cena: 1500 zł</strong></p>
-                    <button class="btn" onclick="openOrderModal('Heban Total smooth Satchel')">Zamów</button>
+                    <button class="btn" onclick="openOrderModal('Heban Total smooth Satchel')">Sprawdź dostępność</button>
                 </div>
                 
                 <!-- Torebka 3 - Natural Timber Glamour wave Satchel -->
@@ -803,7 +810,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
 Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą o falującym kroju. Naturalny odcień drewna eksponuje jej organiczne pochodzenie, dodając wyjątkowego uroku. Stylowe linie cięcia w klimacie glamour akcentują ekskluzywność i wyrafinowany charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
 </p>
                     <p><strong>Cena: 1650 zł</strong></p>
-                    <button class="btn" onclick="openOrderModal('Natural Timber Glamour wave Satchel')">Zamów</button>
+                    <button class="btn" onclick="openOrderModal('Natural Timber Glamour wave Satchel')">Sprawdź dostępność</button>
                 </div>
             </div>
             
@@ -823,7 +830,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                     <p>Torebka w odcieniu Teak
 Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyrafinowanym, prostym kroju. Ciepły, złocisty odcień teku harmonizuje z naturalną fakturą drewna, subtelnie podkreślając jego autentyczne piękno. Precyzyjne, współczesne linie cięcia dodają jej ponadczasowej elegancji i wyrafinowanego stylu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
                     <p><strong>Cena: 950 zł</strong></p>
-                    <button class="btn" onclick="openOrderModal('Prestige Brown smooth Clutch')">Zamów</button>
+                    <button class="btn" onclick="openOrderModal('Prestige Brown smooth Clutch')">Sprawdź dostępność</button>
                 </div>
                 
                 <!-- Torebka 5 - Heban Total wave Clutch -->
@@ -840,7 +847,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyraf
 Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płynnym, falującym kroju. Głęboka, hebanowa czerń promieniuje klasą i wyrafinowaniem, tworząc aurę niepowtarzalnej elegancji. Nowoczesne, precyzyjne cięcia akcentują jej szykowny charakter, czyniąc ją kwintesencją luksusu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.
 </p>
                     <p><strong>Cena: 1250 zł</strong></p>
-                    <button class="btn" onclick="openOrderModal('Heban Total wave Clutch')">Zamów</button>
+                    <button class="btn" onclick="openOrderModal('Heban Total wave Clutch')">Sprawdź dostępność</button>
                 </div>
                 
                 <!-- Torebka 6 - Natural Timber smooth Clutch -->
@@ -856,7 +863,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płyn
                     <p>Torebka w kolorze naturalnego drewna
 Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasycznym, prostym kroju. Naturalny odcień drewna eksponuje jej organiczne piękno, nadając wyjątkowego, subtelnego uroku. Proste, lecz wyrafinowane cięcia podkreślają ekskluzywność i artystyczny charakter, czyniąc ją prawdziwym dziełem sztuki. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
                     <p><strong>Cena: 1100 zł</strong></p>
-                    <button class="btn" onclick="openOrderModal('Natural Timber smooth Clutch')">Zamów</button>
+                    <button class="btn" onclick="openOrderModal('Natural Timber smooth Clutch')">Sprawdź dostępność</button>
                 </div>
             </div>
         </section>
@@ -913,7 +920,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
     <div id="orderModal" class="order-modal">
         <div class="order-modal-content">
             <span class="order-close" onclick="closeOrderModal()">&times;</span>
-            <h2>Składanie zamówienia</h2>
+            <h2>Składanie zamówienia i pytania</h2>
             <form class="order-form" id="orderForm">
                 <label for="product-name">Produkt:</label>
                 <input type="text" id="product-name" readonly>
@@ -928,7 +935,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 <textarea id="order-message" placeholder="Twoja wiadomość..." required></textarea>
                 <p class="form-note">Prosimy o informację dotyczącą dostępności produktu oraz wszelkie dodatkowe pytania lub uwagi.</p>
                 
-                <button type="submit">Wyślij zamówienie</button>
+                <button type="submit">Wyślij</button>
             </form>
         </div>
     </div>
@@ -1111,7 +1118,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             // Tutaj można dodać kod do wysłania danych zamówienia
             // Na przykład przez fetch() do backendu lub email
             
-            alert(`Dziękujemy za złożenie zamówienia na produkt: ${productName}\n\nSkontaktujemy się z Tobą w ciągu 24 godzin.`);
+            alert(`Dziękujemy za zapytanie dotyczące produktu: ${productName}\n\nSkontaktujemy się z Tobą w ciągu 24 godzin.`);
             closeOrderModal();
             
             // Reset formularza
