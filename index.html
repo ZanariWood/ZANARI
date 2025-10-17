@@ -209,6 +209,8 @@
             font-size: clamp(0.9rem, 2vw, 1rem);
             transition: background 0.3s ease;
             font-weight: 500;
+            cursor: pointer;
+            border: none;
         }
         .btn:hover {
             background: #b5915a;
@@ -389,6 +391,7 @@
             border-radius: 5px;
             background: #4a3728;
             color: #f8efe4;
+            font-family: 'Cormorant Garamond', serif;
         }
         .contact-form button {
             background: #c9a66b;
@@ -398,6 +401,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
         }
         .contact-form button:hover {
             background: #b5915a;
@@ -405,6 +409,84 @@
         .contact-info {
             margin-top: 1rem;
             text-align: center;
+        }
+        /* Modal zamówienia */
+        .order-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .order-modal-content {
+            background-color: #5c4635;
+            margin: 5% auto;
+            padding: 25px;
+            border: 1px solid #c9a66b;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            color: #f8efe4;
+        }
+        .order-close {
+            color: #c9a66b;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .order-close:hover {
+            color: #b5915a;
+        }
+        .order-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .order-form label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #c9a66b;
+        }
+        .order-form input, .order-form textarea {
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            border: 1px solid #c9a66b;
+            border-radius: 5px;
+            background: #4a3728;
+            color: #f8efe4;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+        }
+        .order-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .order-form button {
+            background: #c9a66b;
+            color: #2f2319;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        .order-form button:hover {
+            background: #b5915a;
+        }
+        .form-note {
+            font-size: 0.9rem;
+            color: #d4c19c;
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
         }
         @media (max-width: 768px) {
             .intro {
@@ -459,8 +541,9 @@
             .additional-images img {
                 height: 180px;
             }
-            .contact-modal-content {
+            .contact-modal-content, .order-modal-content {
                 width: 90%;
+                padding: 20px;
             }
             .craftsmanship img {
                 max-width: 100%;
@@ -524,6 +607,10 @@
             .contact-social a, .contact-social .email-link {
                 margin: 0.3rem;
                 display: block;
+            }
+            .order-modal-content {
+                width: 95%;
+                padding: 15px;
             }
         }
         /* Dodatkowe style dla urządzeń dotykowych */
@@ -682,7 +769,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
  styl i ponadczasową elegancję. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
 </p>
                     <p><strong>Cena: 1300 zł</strong></p>
-                    <a href="#" class="btn">Kup teraz</a>
+                    <button class="btn" onclick="openOrderModal('Havana Elegance smooth Satchel')">Zamów</button>
                 </div>
                 
                 <!-- Torebka 2 - Heban Total smooth Satchel -->
@@ -699,7 +786,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
 Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą w prostym stylu. Głęboka czerń Hebanu emanuje klasą i wyrafinowaniem, tworząc aurę ponadczasowej elegancji. Precyzyjne, nowoczesne linie cięcia podkreślają jej szykowny charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
 </p>
                     <p><strong>Cena: 1500 zł</strong></p>
-                    <a href="#" class="btn">Kup teraz</a>
+                    <button class="btn" onclick="openOrderModal('Heban Total smooth Satchel')">Zamów</button>
                 </div>
                 
                 <!-- Torebka 3 - Natural Timber Glamour wave Satchel -->
@@ -716,7 +803,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
 Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą o falującym kroju. Naturalny odcień drewna eksponuje jej organiczne pochodzenie, dodając wyjątkowego uroku. Stylowe linie cięcia w klimacie glamour akcentują ekskluzywność i wyrafinowany charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
 </p>
                     <p><strong>Cena: 1650 zł</strong></p>
-                    <a href="#" class="btn">Kup teraz</a>
+                    <button class="btn" onclick="openOrderModal('Natural Timber Glamour wave Satchel')">Zamów</button>
                 </div>
             </div>
             
@@ -736,7 +823,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                     <p>Torebka w odcieniu Teak
 Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyrafinowanym, prostym kroju. Ciepły, złocisty odcień teku harmonizuje z naturalną fakturą drewna, subtelnie podkreślając jego autentyczne piękno. Precyzyjne, współczesne linie cięcia dodają jej ponadczasowej elegancji i wyrafinowanego stylu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
                     <p><strong>Cena: 950 zł</strong></p>
-                    <a href="#" class="btn">Kup teraz</a>
+                    <button class="btn" onclick="openOrderModal('Prestige Brown smooth Clutch')">Zamów</button>
                 </div>
                 
                 <!-- Torebka 5 - Heban Total wave Clutch -->
@@ -753,7 +840,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyraf
 Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płynnym, falującym kroju. Głęboka, hebanowa czerń promieniuje klasą i wyrafinowaniem, tworząc aurę niepowtarzalnej elegancji. Nowoczesne, precyzyjne cięcia akcentują jej szykowny charakter, czyniąc ją kwintesencją luksusu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.
 </p>
                     <p><strong>Cena: 1250 zł</strong></p>
-                    <a href="#" class="btn">Kup teraz</a>
+                    <button class="btn" onclick="openOrderModal('Heban Total wave Clutch')">Zamów</button>
                 </div>
                 
                 <!-- Torebka 6 - Natural Timber smooth Clutch -->
@@ -769,7 +856,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płyn
                     <p>Torebka w kolorze naturalnego drewna
 Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasycznym, prostym kroju. Naturalny odcień drewna eksponuje jej organiczne piękno, nadając wyjątkowego, subtelnego uroku. Proste, lecz wyrafinowane cięcia podkreślają ekskluzywność i artystyczny charakter, czyniąc ją prawdziwym dziełem sztuki. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
                     <p><strong>Cena: 1100 zł</strong></p>
-                    <a href="#" class="btn">Kup teraz</a>
+                    <button class="btn" onclick="openOrderModal('Natural Timber smooth Clutch')">Zamów</button>
                 </div>
             </div>
         </section>
@@ -819,6 +906,30 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                     <a href="https://www.facebook.com/profile.php?id=61582568185533" class="social-link" id="contact-facebook">Facebook</a>
                 </p>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal zamówienia -->
+    <div id="orderModal" class="order-modal">
+        <div class="order-modal-content">
+            <span class="order-close" onclick="closeOrderModal()">&times;</span>
+            <h2>Składanie zamówienia</h2>
+            <form class="order-form" id="orderForm">
+                <label for="product-name">Produkt:</label>
+                <input type="text" id="product-name" readonly>
+                
+                <label for="contact-email">Email kontaktowy *</label>
+                <input type="email" id="contact-email" placeholder="Twój adres email" required>
+                
+                <label for="contact-phone">Numer telefonu (opcjonalnie)</label>
+                <input type="tel" id="contact-phone" placeholder="Twój numer telefonu">
+                
+                <label for="order-message">Wiadomość:</label>
+                <textarea id="order-message" placeholder="Twoja wiadomość..." required></textarea>
+                <p class="form-note">Prosimy o informację dotyczącą dostępności produktu oraz wszelkie dodatkowe pytania lub uwagi.</p>
+                
+                <button type="submit">Wyślij zamówienie</button>
+            </form>
         </div>
     </div>
 
@@ -963,6 +1074,50 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             }
         }
 
+        // Funkcje dla modala zamówienia
+        function openOrderModal(productName) {
+            const orderModal = document.getElementById('orderModal');
+            const productNameInput = document.getElementById('product-name');
+            const orderMessage = document.getElementById('order-message');
+            
+            if (orderModal && productNameInput) {
+                productNameInput.value = productName;
+                orderMessage.value = `Chciałbym/chciałabym zapytać o dostępność produktu "${productName}". `;
+                orderModal.style.display = 'block';
+            }
+        }
+
+        function closeOrderModal() {
+            const orderModal = document.getElementById('orderModal');
+            if (orderModal) orderModal.style.display = 'none';
+        }
+
+        // Obsługa formularza zamówienia
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const productName = document.getElementById('product-name').value;
+            const email = document.getElementById('contact-email').value;
+            const phone = document.getElementById('contact-phone').value;
+            const message = document.getElementById('order-message').value;
+            
+            // Walidacja email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Proszę podać prawidłowy adres e-mail.');
+                return;
+            }
+            
+            // Tutaj można dodać kod do wysłania danych zamówienia
+            // Na przykład przez fetch() do backendu lub email
+            
+            alert(`Dziękujemy za złożenie zamówienia na produkt: ${productName}\n\nSkontaktujemy się z Tobą w ciągu 24 godzin.`);
+            closeOrderModal();
+            
+            // Reset formularza
+            this.reset();
+        });
+
         // Funkcja do aktualizacji linków społecznościowych
         function updateSocialLinks(instagramUrl = "https://www.instagram.com/zanariwood/", facebookUrl = "https://www.facebook.com/profile.php?id=61582568185533") {
             // Linki w sekcji kontakt na głównej stronie
@@ -1015,17 +1170,27 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                     document.body.style.overflow = 'auto';
                     document.removeEventListener('click', closeZoomOnClick);
                 }
+                
+                const orderModal = document.getElementById('orderModal');
+                if (orderModal && orderModal.style.display === 'block') {
+                    closeOrderModal();
+                }
             }
         });
 
         window.onclick = function(event) {
             const modal = document.getElementById('imageModal');
             const contactModal = document.getElementById('contactModal');
+            const orderModal = document.getElementById('orderModal');
+            
             if (event.target == modal) {
                 closeModal();
             }
             if (event.target == contactModal) {
                 contactModal.style.display = 'none';
+            }
+            if (event.target == orderModal) {
+                orderModal.style.display = 'none';
             }
         }
 
