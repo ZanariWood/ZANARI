@@ -242,14 +242,25 @@
             padding: 1.5rem;
             font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
-        footer a, section#kontakt a {
-            color: #c9a66b;
+        /* Nowe style dla linków social media - bardziej czytelne */
+        .social-link {
+            color: #e8d5b5 !important;
             text-decoration: none;
             margin: 0 0.5rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
         }
-        footer a:hover, section#kontakt a:hover {
-            color: #b5915a;
+        .social-link:hover {
+            color: #c9a66b !important;
+            border-bottom: 1px solid #c9a66b;
+            text-shadow: 0 0 5px rgba(201, 166, 107, 0.3);
+        }
+        .social-link:visited {
+            color: #d4c19c !important;
+        }
+        .social-link:active {
+            color: #b5915a !important;
         }
         .social-links {
             margin-top: 0.5rem;
@@ -258,6 +269,13 @@
             display: inline-block;
             margin: 0 0.5rem;
             font-size: 1.1rem;
+        }
+        .contact-social {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .contact-social a {
+            margin: 0 0.8rem;
         }
         .modal {
             display: none;
@@ -442,6 +460,10 @@
                 height: auto;
                 padding: 15px;
             }
+            .contact-social a {
+                margin: 0 0.5rem;
+                display: inline-block;
+            }
         }
         @media (max-width: 480px) {
             .intro h2, section h2 {
@@ -486,6 +508,10 @@
                 max-width: 98vw;
                 max-height: 85vh;
                 padding: 10px;
+            }
+            .contact-social a {
+                margin: 0.3rem;
+                display: block;
             }
         }
         /* Dodatkowe style dla urządzeń dotykowych */
@@ -739,6 +765,10 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         <section id="kontakt">
             <h2><a href="#" onclick="openContactModal()">Kontakt</a></h2>
             <p>Skontaktuj się z nami: <a href="mailto:zanariwood@gmail.com">zanariwood@gmail.com</a></p>
+            <div class="contact-social">
+                <a href="#" class="social-link" id="main-instagram">Instagram</a>
+                <a href="#" class="social-link" id="main-facebook">Facebook</a>
+            </div>
         </section>
     </div>
     
@@ -746,8 +776,8 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         <p>&copy; 2025 Zanari. Wszystkie prawa zastrzeżone.</p>
         <p>Śledź nas: 
             <span class="social-links">
-                <a href="#" id="instagram-link">Instagram</a> | 
-                <a href="#" id="facebook-link">Facebook</a>
+                <a href="#" class="social-link" id="footer-instagram">Instagram</a> | 
+                <a href="#" class="social-link" id="footer-facebook">Facebook</a>
             </span>
         </p>
     </footer>
@@ -770,11 +800,11 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 <button type="submit">Wyślij</button>
             </form>
             <div class="contact-info">
-                <p>Telefon: +48 600 658 728</p>
-        REM     <p>Adres: ul. Elegancka 1, Warszawa</p>
+                <p>Telefon: +48 123 456 789</p>
+                <p>Adres: ul. Elegancka 1, Warszawa</p>
                 <p>Social media: 
-                    <a href="#" id="contact-instagram">Instagram</a> | 
-                    <a href="#" id="contact-facebook">Facebook</a>
+                    <a href="#" class="social-link" id="contact-instagram">Instagram</a> | 
+                    <a href="#" class="social-link" id="contact-facebook">Facebook</a>
                 </p>
             </div>
         </div>
@@ -923,9 +953,13 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
 
         // Funkcja do aktualizacji linków społecznościowych
         function updateSocialLinks(instagramUrl = "#", facebookUrl = "#") {
+            // Linki w sekcji kontakt na głównej stronie
+            document.getElementById('main-instagram').href = instagramUrl;
+            document.getElementById('main-facebook').href = facebookUrl;
+            
             // Linki w footerze
-            document.getElementById('instagram-link').href = instagramUrl;
-            document.getElementById('facebook-link').href = facebookUrl;
+            document.getElementById('footer-instagram').href = instagramUrl;
+            document.getElementById('footer-facebook').href = facebookUrl;
             
             // Linki w modal kontaktowy
             document.getElementById('contact-instagram').href = instagramUrl;
@@ -1015,5 +1049,3 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
     </script>
 </body>
 </html>
-
-
