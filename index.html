@@ -251,6 +251,14 @@
         footer a:hover, section#kontakt a:hover {
             color: #b5915a;
         }
+        .social-links {
+            margin-top: 0.5rem;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 0.5rem;
+            font-size: 1.1rem;
+        }
         .modal {
             display: none;
             position: fixed;
@@ -736,7 +744,12 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
     
     <footer>
         <p>&copy; 2025 Zanari. Wszystkie prawa zastrzeżone.</p>
-        <p>Śledź nas: <a href="#">Instagram</a> | <a href="#">Facebook</a></p>
+        <p>Śledź nas: 
+            <span class="social-links">
+                <a href="#" id="instagram-link">Instagram</a> | 
+                <a href="#" id="facebook-link">Facebook</a>
+            </span>
+        </p>
     </footer>
 
     <div id="imageModal" class="modal">
@@ -759,7 +772,10 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             <div class="contact-info">
                 <p>Telefon: +48 123 456 789</p>
                 <p>Adres: ul. Elegancka 1, Warszawa</p>
-                <p>Social media: Instagram, Facebook</p>
+                <p>Social media: 
+                    <a href="#" id="contact-instagram">Instagram</a> | 
+                    <a href="#" id="contact-facebook">Facebook</a>
+                </p>
             </div>
         </div>
     </div>
@@ -820,7 +836,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             });
         }
 
-        // Funkcja do ładowania dodatkowych zdjęć
+        // Funkcja do ładowania dodatkowych zdjęć (do litery f)
         async function loadAdditionalImages() {
             const items = document.querySelectorAll('.item');
             
@@ -833,35 +849,30 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 const basePath = baseImageSrc.substring(0, baseImageSrc.lastIndexOf('.'));
                 const baseName = basePath.substring(0, basePath.length - 1); // Usuń ostatnią literę (a/b)
                 
-                // Sprawdź czy istnieją zdjęcia *c i *d
-                const imageC = baseName + 'c.jpg';
-                const imageD = baseName + 'd.jpg';
+                // Lista możliwych dodatkowych zdjęć (c, d, e, f)
+                const additionalLetters = ['c', 'd', 'e', 'f'];
+                let existingImages = [];
                 
                 // Sprawdź które zdjęcia istnieją
-                const [existsC, existsD] = await Promise.all([
-                    imageExists(imageC),
-                    imageExists(imageD)
-                ]);
-                
-                // Dodaj tylko te zdjęcia które istnieją
-                if (existsC) {
-                    const imgC = document.createElement('img');
-                    imgC.src = imageC;
-                    imgC.alt = additionalContainer.previousElementSibling.querySelector('img').alt.replace('widok 1', 'widok 3').replace('widok 2', 'widok 3');
-                    imgC.onclick = function() { openModal(this); };
-                    additionalContainer.appendChild(imgC);
+                for (const letter of additionalLetters) {
+                    const imageUrl = baseName + letter + '.jpg';
+                    const exists = await imageExists(imageUrl);
+                    if (exists) {
+                        existingImages.push({ url: imageUrl, letter: letter });
+                    }
                 }
                 
-                if (existsD) {
-                    const imgD = document.createElement('img');
-                    imgD.src = imageD;
-                    imgD.alt = additionalContainer.previousElementSibling.querySelector('img').alt.replace('widok 1', 'widok 4').replace('widok 2', 'widok 4');
-                    imgD.onclick = function() { openModal(this); };
-                    additionalContainer.appendChild(imgD);
+                // Dodaj tylko te zdjęcia które istnieją
+                for (const imgData of existingImages) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imgData.url;
+                    imgElement.alt = additionalContainer.previousElementSibling.querySelector('img').alt.replace('widok 1', `widok ${imgData.letter.toUpperCase()}`).replace('widok 2', `widok ${imgData.letter.toUpperCase()}`);
+                    imgElement.onclick = function() { openModal(this); };
+                    additionalContainer.appendChild(imgElement);
                 }
                 
                 // Jeśli nie ma żadnych dodatkowych zdjęć, ukryj kontener
-                if (!existsC && !existsD) {
+                if (existingImages.length === 0) {
                     additionalContainer.style.display = 'none';
                 }
             }
@@ -891,26 +902,6 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                     slideIndex = 0;
                 }
             }
-            
-            // Pokaż dodatkowe zdjęcia TYLKO w modalnej galerii
-            showAdditionalImagesInModal(img);
-        }
-
-        function showAdditionalImagesInModal(clickedImg) {
-            // Ukryj wszystkie dodatkowe zdjęcia na stronie głównej
-            document.querySelectorAll('.additional-images').forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            // Pokaż dodatkowe zdjęcia tylko dla klikniętego produktu W MODALU
-            const item = clickedImg.closest('.item');
-            if (item) {
-                const additionalImages = item.querySelector('.additional-images');
-                if (additionalImages && additionalImages.children.length > 0) {
-                    // Dodaj dodatkowe zdjęcia do currentImages dla nawigacji w modal
-                    // (to już jest zrobione w openModal)
-                }
-            }
         }
 
         function closeModal() {
@@ -918,11 +909,6 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             if (modal) modal.style.display = 'none';
             currentImages = [];
             slideIndex = 0;
-            
-            // Ukryj wszystkie dodatkowe zdjęcia po zamknięciu modala
-            document.querySelectorAll('.additional-images').forEach(el => {
-                el.classList.remove('active');
-            });
         }
 
         function plusSlides(n) {
@@ -933,6 +919,17 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             if (modalImg && currentImages[slideIndex]) {
                 modalImg.src = currentImages[slideIndex].src;
             }
+        }
+
+        // Funkcja do aktualizacji linków społecznościowych
+        function updateSocialLinks(instagramUrl = "#", facebookUrl = "#") {
+            // Linki w footerze
+            document.getElementById('instagram-link').href = instagramUrl;
+            document.getElementById('facebook-link').href = facebookUrl;
+            
+            // Linki w modal kontaktowy
+            document.getElementById('contact-instagram').href = instagramUrl;
+            document.getElementById('contact-facebook').href = facebookUrl;
         }
 
         // Funkcja do powiększania/zmniejszania obrazka procesu rzemieślniczego
@@ -1008,9 +1005,12 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             closeContactModal();
         });
 
-        // Załaduj dodatkowe zdjęcia po załadowaniu strony
+        // Załaduj dodatkowe zdjęcia i ustaw linki społecznościowe po załadowaniu strony
         document.addEventListener('DOMContentLoaded', function() {
             loadAdditionalImages();
+            
+            // Tutaj możesz dodać prawdziwe linki kiedy będą dostępne
+            // updateSocialLinks('https://instagram.com/twojprofil', 'https://facebook.com/twojprofil');
         });
     </script>
 </body>
