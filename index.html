@@ -164,6 +164,15 @@
         .item-images img:hover {
             transform: scale(1.05);
         }
+        .additional-images {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .additional-images.active {
+            display: grid;
+        }
         .item h3 {
             font-family: 'Cinzel', serif;
             font-size: clamp(1.2rem, 2.5vw, 1.5rem);
@@ -392,6 +401,12 @@
             .item-images img {
                 height: 180px;
             }
+            .additional-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .additional-images img {
+                height: 180px;
+            }
             .contact-modal-content {
                 width: 90%;
             }
@@ -420,6 +435,12 @@
                 grid-template-columns: 1fr;
             }
             .item-images img {
+                height: 220px;
+            }
+            .additional-images {
+                grid-template-columns: 1fr;
+            }
+            .additional-images img {
                 height: 220px;
             }
             .video-container {
@@ -592,6 +613,10 @@
                         <img src="zdjecia/torebka1a.jpg" alt="Havana Elegance smooth Satchel - widok 1" onclick="openModal(this)">
                         <img src="zdjecia/torebka1b.jpg" alt="Havana Elegance smooth Satchel - widok 2" onclick="openModal(this)">
                     </div>
+                    <div class="additional-images" id="additional-1">
+                        <img src="zdjecia/torebka1c.jpg" alt="Havana Elegance smooth Satchel - widok 3" onclick="openModal(this)">
+                        <img src="zdjecia/torebka1d.jpg" alt="Havana Elegance smooth Satchel - widok 4" onclick="openModal(this)">
+                    </div>
                     <h3>Havana Elegance smooth Satchel</h3>
                     <p>Torebka w odcieniu Havana
 Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i klapą o prostym kroju. Subtelny odcień jasnego brązu Havana harmonizuje z naturalnym pięknem materiału, podkreślając jego autentyczność. Nowoczesne linie cięcia nadają jej wyrafinowany styl i ponadczasową elegancję. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
@@ -607,6 +632,10 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                         <img src="zdjecia/torebka2a.jpg" alt="Heban Total smooth Satchel - widok 1" onclick="openModal(this)">
                         <img src="zdjecia/torebka2b.jpg" alt="Heban Total smooth Satchel - widok 2" onclick="openModal(this)">
                     </div>
+                    <div class="additional-images" id="additional-2">
+                        <img src="zdjecia/torebka2c.jpg" alt="Heban Total smooth Satchel - widok 3" onclick="openModal(this)">
+                        <img src="zdjecia/torebka2d.jpg" alt="Heban Total smooth Satchel - widok 4" onclick="openModal(this)">
+                    </div>
                     <h3>Heban Total smooth Satchel</h3>
                     <p>Torebka w kolorze Heban
 Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą w prostym stylu. Głęboka czerń Hebanu emanuje klasą i wyrafinowaniem, tworząc aurę ponadczasowej elegancji. Precyzyjne, nowoczesne linie cięcia podkreślają jej szykowny charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
@@ -620,6 +649,10 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                     <div class="item-images">
                         <img src="zdjecia/torebka3a.jpg" alt="Natural Timber Glamour wave Satchel - widok 1" onclick="openModal(this)">
                         <img src="zdjecia/torebka3b.jpg" alt="Natural Timber Glamour wave Satchel - widok 2" onclick="openModal(this)">
+                    </div>
+                    <div class="additional-images" id="additional-3">
+                        <img src="zdjecia/torebka3c.jpg" alt="Natural Timber Glamour wave Satchel - widok 3" onclick="openModal(this)">
+                        <img src="zdjecia/torebka3d.jpg" alt="Natural Timber Glamour wave Satchel - widok 4" onclick="openModal(this)">
                     </div>
                     <h3>Natural Timber Glamour wave Satchel</h3>
                     <p>Torebka w kolorze naturalnego drewna
@@ -639,6 +672,10 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                         <img src="zdjecia/torebka4a.jpg" alt="Prestige Brown smooth Clutch - widok 1" onclick="openModal(this)">
                         <img src="zdjecia/torebka4b.jpg" alt="Prestige Brown smooth Clutch - widok 2" onclick="openModal(this)">
                     </div>
+                    <div class="additional-images" id="additional-4">
+                        <img src="zdjecia/torebka4c.jpg" alt="Prestige Brown smooth Clutch - widok 3" onclick="openModal(this)">
+                        <img src="zdjecia/torebka4d.jpg" alt="Prestige Brown smooth Clutch - widok 4" onclick="openModal(this)">
+                    </div>
                     <h3>Prestige Brown smooth Clutch</h3>
                     <p>Torebka w odcieniu Teak
 Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyrafinowanym, prostym kroju. Ciepły, złocisty odcień teku harmonizuje z naturalną fakturą drewna, subtelnie podkreślając jego autentyczne piękno. Precyzyjne, współczesne linie cięcia dodają jej ponadczasowej elegancji i wyrafinowanego stylu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
@@ -651,6 +688,10 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyraf
                     <div class="item-images">
                         <img src="zdjecia/torebka5a.jpg" alt="Heban Total wave Clutch - widok 1" onclick="openModal(this)">
                         <img src="zdjecia/torebka5b.jpg" alt="Heban Total wave Clutch - widok 2" onclick="openModal(this)">
+                    </div>
+                    <div class="additional-images" id="additional-5">
+                        <img src="zdjecia/torebka5c.jpg" alt="Heban Total wave Clutch - widok 3" onclick="openModal(this)">
+                        <img src="zdjecia/torebka5d.jpg" alt="Heban Total wave Clutch - widok 4" onclick="openModal(this)">
                     </div>
                     <h3>Heban Total wave Clutch</h3>
                     <p>Torebka w kolorze Heban
@@ -665,6 +706,10 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płyn
                     <div class="item-images">
                         <img src="zdjecia/torebka6a.jpg" alt="Natural Timber smooth Clutch - widok 1" onclick="openModal(this)">
                         <img src="zdjecia/torebka6b.jpg" alt="Natural Timber smooth Clutch - widok 2" onclick="openModal(this)">
+                    </div>
+                    <div class="additional-images" id="additional-6">
+                        <img src="zdjecia/torebka6c.jpg" alt="Natural Timber smooth Clutch - widok 3" onclick="openModal(this)">
+                        <img src="zdjecia/torebka6d.jpg" alt="Natural Timber smooth Clutch - widok 4" onclick="openModal(this)">
                     </div>
                     <h3>Natural Timber smooth Clutch</h3>
                     <p>Torebka w kolorze naturalnego drewna
@@ -764,6 +809,9 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             modal.style.display = 'flex';
             modalImg.src = img.src;
 
+            // Pokaż dodatkowe zdjęcia dla tego produktu
+            showAdditionalImages(img);
+
             if (img.src.includes('logo.png')) {
                 currentImages = [document.querySelector('.logo img')];
                 slideIndex = 0;
@@ -771,13 +819,30 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 currentImages = [document.querySelector('.craftsmanship img')];
                 slideIndex = 0;
             } else {
-                const itemImagesContainer = img.closest('.item-images');
-                if (itemImagesContainer) {
-                    currentImages = Array.from(itemImagesContainer.querySelectorAll('img'));
+                const item = img.closest('.item');
+                if (item) {
+                    const allImages = Array.from(item.querySelectorAll('.item-images img, .additional-images img'));
+                    currentImages = allImages;
                     slideIndex = currentImages.indexOf(img);
                 } else {
                     currentImages = [img];
                     slideIndex = 0;
+                }
+            }
+        }
+
+        function showAdditionalImages(clickedImg) {
+            // Ukryj wszystkie dodatkowe zdjęcia
+            document.querySelectorAll('.additional-images').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Pokaż dodatkowe zdjęcia dla klikniętego produktu
+            const item = clickedImg.closest('.item');
+            if (item) {
+                const additionalImages = item.querySelector('.additional-images');
+                if (additionalImages) {
+                    additionalImages.classList.add('active');
                 }
             }
         }
