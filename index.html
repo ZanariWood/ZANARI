@@ -274,8 +274,20 @@
             margin-top: 1rem;
             text-align: center;
         }
-        .contact-social a {
+        .contact-social a, .contact-social .email-link {
             margin: 0 0.8rem;
+        }
+        .email-link {
+            color: #e8d5b5 !important;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+        }
+        .email-link:hover {
+            color: #c9a66b !important;
+            border-bottom: 1px solid #c9a66b;
+            text-shadow: 0 0 5px rgba(201, 166, 107, 0.3);
         }
         .modal {
             display: none;
@@ -460,7 +472,7 @@
                 height: auto;
                 padding: 15px;
             }
-            .contact-social a {
+            .contact-social a, .contact-social .email-link {
                 margin: 0 0.5rem;
                 display: inline-block;
             }
@@ -509,7 +521,7 @@
                 max-height: 85vh;
                 padding: 10px;
             }
-            .contact-social a {
+            .contact-social a, .contact-social .email-link {
                 margin: 0.3rem;
                 display: block;
             }
@@ -763,11 +775,11 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         </section>
         
         <section id="kontakt">
-            <h2><a href="#" onclick="openContactModal()">Kontakt</a></h2>
-            <p>Skontaktuj się z nami: <a href="mailto:zanariwood@gmail.com">zanariwood@gmail.com</a></p>
+            <h2><a href="#" onclick="openContactModal()" style="color: #c9a66b; text-decoration: none;">Kontakt</a></h2>
             <div class="contact-social">
-                <a href="#" class="social-link" id="main-instagram">Instagram</a>
+                <a href="mailto:zanariwood@gmail.com" class="email-link">zanariwood@gmail.com</a>
                 <a href="#" class="social-link" id="main-facebook">Facebook</a>
+                <a href="#" class="social-link" id="main-instagram">Instagram</a>
             </div>
         </section>
     </div>
@@ -952,7 +964,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         }
 
         // Funkcja do aktualizacji linków społecznościowych
-        function updateSocialLinks(instagramUrl = "#", facebookUrl = "#") {
+        function updateSocialLinks(instagramUrl = "#", facebookUrl = "https://www.facebook.com/profile.php?id=61582568185533") {
             // Linki w sekcji kontakt na głównej stronie
             document.getElementById('main-instagram').href = instagramUrl;
             document.getElementById('main-facebook').href = facebookUrl;
@@ -1043,8 +1055,8 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         document.addEventListener('DOMContentLoaded', function() {
             loadAdditionalImages();
             
-            // Tutaj możesz dodać prawdziwe linki kiedy będą dostępne
-            // updateSocialLinks('https://instagram.com/twojprofil', 'https://facebook.com/twojprofil');
+            // Ustaw link do Facebooka
+            updateSocialLinks('#', 'https://www.facebook.com/profile.php?id=61582568185533');
         });
     </script>
 </body>
