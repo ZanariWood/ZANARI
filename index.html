@@ -223,7 +223,7 @@
         }
         .btn-outlet {
             background: #e74c3c;
-            margin-left: 0.5rem;
+            margin-left: 15px; /* Przesunięcie w prawo */
         }
         .btn-outlet:hover {
             background: #c0392b;
@@ -231,8 +231,17 @@
         .btn-outlet:disabled {
             background: #95a5a6;
             cursor: not-allowed;
-            text-decoration: line-through;
-            color: #7f8c8d;
+            position: relative;
+        }
+        .btn-outlet:disabled::after {
+            content: '';
+            position: absolute;
+            top: 55%; /* Przesunięcie przekreślenia niżej */
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #7f8c8d;
+            transform: translateY(-50%);
         }
         .btn-outlet:disabled:hover {
             background: #95a5a6;
@@ -534,94 +543,84 @@
             color: #c9a66b;
             font-weight: bold;
         }
-        /* Panel administracyjny */
-        .admin-panel {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: #2f2319;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #c9a66b;
-            z-index: 10000;
-        }
-        .admin-btn {
-            background: #c9a66b;
-            color: #2f2319;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 500;
-        }
-        .admin-modal {
+        /* Modal outlet */
+        .outlet-modal {
             display: none;
             position: fixed;
-            z-index: 10001;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
             padding-top: 60px;
         }
-        .admin-modal-content {
+        .outlet-modal-content {
             background-color: #5c4635;
             margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #c9a66b;
-            width: 90%;
-            max-width: 800px;
+            padding: 25px;
+            border: 1px solid #e74c3c;
+            width: 80%;
+            max-width: 600px;
             border-radius: 10px;
             color: #f8efe4;
-            max-height: 80vh;
-            overflow-y: auto;
         }
-        .admin-close {
-            color: #c9a66b;
+        .outlet-close {
+            color: #e74c3c;
             float: right;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
         }
-        .admin-close:hover {
-            color: #b5915a;
+        .outlet-close:hover {
+            color: #c0392b;
         }
-        .product-edit {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #c9a66b;
+        .outlet-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .outlet-form label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #e74c3c;
+        }
+        .outlet-form input, .outlet-form textarea {
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            border: 1px solid #e74c3c;
             border-radius: 5px;
             background: #4a3728;
-        }
-        .product-edit h4 {
-            color: #c9a66b;
-            margin-bottom: 10px;
-        }
-        .product-edit input, .product-edit textarea {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 8px;
-            border: 1px solid #c9a66b;
-            border-radius: 3px;
-            background: #2f2319;
             color: #f8efe4;
             font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
         }
-        .product-edit textarea {
-            height: 100px;
+        .outlet-form textarea {
+            min-height: 120px;
             resize: vertical;
         }
-        .save-btn {
-            background: #c9a66b;
-            color: #2f2319;
+        .outlet-form button {
+            background: #e74c3c;
+            color: #f8efe4;
+            padding: 0.75rem;
             border: none;
-            padding: 8px 15px;
-            border-radius: 3px;
+            border-radius: 5px;
             cursor: pointer;
             font-family: 'Cormorant Garamond', serif;
             font-weight: 500;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        .outlet-form button:hover {
+            background: #c0392b;
+        }
+        .outlet-modal-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #e74c3c;
+            font-weight: bold;
         }
         @media (max-width: 768px) {
             .intro {
@@ -680,7 +679,7 @@
             .additional-images img {
                 height: 180px;
             }
-            .contact-modal-content, .order-modal-content {
+            .contact-modal-content, .order-modal-content, .outlet-modal-content {
                 width: 90%;
                 padding: 20px;
             }
@@ -698,7 +697,7 @@
                 margin: 0 0.5rem;
                 display: inline-block;
             }
-            .order-modal-content h2 {
+            .order-modal-content h2, .outlet-modal-content h2 {
                 font-size: 1.3rem;
             }
             .product-actions {
@@ -707,15 +706,6 @@
             }
             .btn-outlet {
                 margin-left: 0;
-            }
-            .admin-panel {
-                top: 5px;
-                right: 5px;
-                padding: 5px;
-            }
-            .admin-modal-content {
-                width: 95%;
-                padding: 15px;
             }
         }
         @media (max-width: 480px) {
@@ -766,11 +756,11 @@
                 margin: 0.3rem;
                 display: block;
             }
-            .order-modal-content {
+            .order-modal-content, .outlet-modal-content {
                 width: 95%;
                 padding: 15px;
             }
-            .order-modal-content h2 {
+            .order-modal-content h2, .outlet-modal-content h2 {
                 font-size: 1.2rem;
             }
         }
@@ -787,11 +777,6 @@
     </style>
 </head>
 <body>
-    <!-- Panel administracyjny -->
-    <div class="admin-panel">
-        <button class="admin-btn" onclick="openAdminPanel()">Edytuj ceny</button>
-    </div>
-
     <header>
         <div class="logo">
             <img src="logo/logo.png" alt="Logo Zanari" onclick="openModal(this)">
@@ -809,7 +794,7 @@
             </div>
             <div class="intro-video">
                 <div class="video-container">
-                    <!-- Filmy pozostają bez zmian -->
+                    <!-- Film 1 -->
                     <video id="video-1" class="active" autoplay muted playsinline>
                         <source src="film/reklama1.mp4" type="video/mp4">
                         Twoja przeglądarka nie obsługuje wideo.
@@ -817,7 +802,78 @@
                     <button id="speaker-btn-1" class="speaker-btn" onclick="toggleMute(1)">
                         <img id="speaker-icon-1" src="ikony/speaker-off.png" alt="Włącz dźwięk">
                     </button>
-                    <!-- ... pozostałe filmy ... -->
+
+                    <!-- Film 2 -->
+                    <video id="video-2" muted playsinline>
+                        <source src="film/reklama2.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-2" class="speaker-btn" onclick="toggleMute(2)" style="display: none;">
+                        <img id="speaker-icon-2" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+
+                    <!-- Film 3 -->
+                    <video id="video-3" muted playsinline>
+                        <source src="film/reklama3.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-3" class="speaker-btn" onclick="toggleMute(3)" style="display: none;">
+                        <img id="speaker-icon-3" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+
+                    <!-- Film 4 -->
+                    <video id="video-4" muted playsinline>
+                        <source src="film/reklama4.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-4" class="speaker-btn" onclick="toggleMute(4)" style="display: none;">
+                        <img id="speaker-icon-4" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+
+                    <!-- Film 5 -->
+                    <video id="video-5" muted playsinline>
+                        <source src="film/reklama5.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-5" class="speaker-btn" onclick="toggleMute(5)" style="display: none;">
+                        <img id="speaker-icon-5" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+
+                    <!-- Film 6 -->
+                    <video id="video-6" muted playsinline>
+                        <source src="film/reklama6.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-6" class="speaker-btn" onclick="toggleMute(6)" style="display: none;">
+                        <img id="speaker-icon-6" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+
+                    <!-- Film 7 -->
+                    <video id="video-7" muted playsinline>
+                        <source src="film/reklama7.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-7" class="speaker-btn" onclick="toggleMute(7)" style="display: none;">
+                        <img id="speaker-icon-7" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+
+                    <!-- Film 8 -->
+                    <video id="video-8" muted playsinline>
+                        <source src="film/reklama8.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-8" class="speaker-btn" onclick="toggleMute(8)" style="display: none;">
+                        <img id="speaker-icon-8" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
+
+                    <!-- Film 9 -->
+                    <video id="video-9" muted playsinline>
+                        <source src="film/reklama9.mp4" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje wideo.
+                    </video>
+                    <button id="speaker-btn-9" class="speaker-btn" onclick="toggleMute(9)" style="display: none;">
+                        <img id="speaker-icon-9" src="ikony/speaker-off.png" alt="Włącz dźwięk">
+                    </button>
                 </div>
             </div>
         </section>
@@ -860,8 +916,11 @@
                         <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Havana Elegance smooth Satchel</h3>
-                    <p class="product-description">Torebka w odcieniu Havana. Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i klapą o prostym kroju. Subtelny odcień jasnego brązu Havana harmonizuje z naturalnym pięknem materiału, podkreślając jego autentyczność. Nowoczesne linie cięcia nadają jej wyrafinowany styl i ponadczasową elegancję. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.</p>
-                    <p><strong class="product-price">Cena: 1300 zł</strong></p>
+                    <p>Torebka w odcieniu Havana
+Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i klapą o prostym kroju. Subtelny odcień jasnego brązu Havana harmonizuje z naturalnym pięknem materiału, podkreślając jego autentyczność. Nowoczesne linie cięcia nadają jej wyrafinowany styl i ponadczasową elegancję. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
+ styl i ponadczasową elegancję. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
+</p>
+                    <p><strong>Cena: 1300 zł</strong></p>
                     <div class="product-actions">
                         <button class="btn btn-small" onclick="openOrderModal('Havana Elegance smooth Satchel')">Sprawdź dostępność</button>
                         <button class="btn btn-small btn-outlet" disabled>Dostępna w outlecie</button>
@@ -879,8 +938,10 @@
                         <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Heban Total smooth Satchel</h3>
-                    <p class="product-description">Torebka w kolorze Heban. Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą w prostym stylu. Głęboka czerń Hebanu emanuje klasą i wyrafinowaniem, tworząc aurę ponadczasowej elegancji. Precyzyjne, nowoczesne linie cięcia podkreślają jej szykowny charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.</p>
-                    <p><strong class="product-price">Cena: 1500 zł</strong></p>
+                    <p>Torebka w kolorze Heban
+Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą w prostym stylu. Głęboka czerń Hebanu emanuje klasą и wyrafinowaniem, tworząc aurę ponadczasowej elegancji. Precyzyjne, nowoczesne linie cięcia podkreślają jej szykowny charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
+</p>
+                    <p><strong>Cena: 1500 zł</strong></p>
                     <div class="product-actions">
                         <button class="btn btn-small" onclick="openOrderModal('Heban Total smooth Satchel')">Sprawdź dostępność</button>
                         <button class="btn btn-small btn-outlet" disabled>Dostępna w outlecie</button>
@@ -898,8 +959,10 @@
                         <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Natural Timber Glamour wave Satchel</h3>
-                    <p class="product-description">Torebka w kolorze naturalnego drewna. Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą o falującym kroju. Naturalny odcień drewna eksponuje jej organiczne pochodzenie, dodając wyjątkowego uroku. Stylowe linie cięcia w klimacie glamour akcentują ekskluzywność i wyrafinowany charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.</p>
-                    <p><strong class="product-price">Cena: 1650 zł</strong></p>
+                    <p>Torebka w kolorze naturalnego drewna
+Średniej wielkości torebka "kopertówka" z wymiennym łańcuszkiem na ramię i klapą o falującym kroju. Naturalny odcień drewna eksponuje jej organiczne pochodzenie, dodając wyjątkowego uroku. Stylowe linie cięcia w klimacie glamour akcentują ekskluzywność i wyrafinowany charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm.
+</p>
+                    <p><strong>Cena: 1650 zł</strong></p>
                     <div class="product-actions">
                         <button class="btn btn-small" onclick="openOrderModal('Natural Timber Glamour wave Satchel')">Sprawdź dostępność</button>
                         <button class="btn btn-small btn-outlet" disabled>Dostępna w outlecie</button>
@@ -921,8 +984,9 @@
                         <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Prestige Brown smooth Clutch</h3>
-                    <p class="product-description">Torebka w odcieniu Teak. Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyrafinowanym, prostym kroju. Ciepły, złocisty odcień teku harmonizuje z naturalną fakturą drewna, subtelnie podkreślając jego autentyczne piękno. Precyzyjne, współczesne linie cięcia dodają jej ponadczasowej elegancji i wyrafinowanego stylu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
-                    <p><strong class="product-price">Cena: 950 zł</strong></p>
+                    <p>Torebka w odcieniu Teak
+Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyrafinowanym, prostym kroju. Ciepły, złocisty odcień teku harmonizuje z naturalną fakturą drewna, subtelnie podkreślając jego autentyczne piękno. Precyzyjne, współczesne linie cięcia dodają jej ponadczasowej elegancji i wyrafinowanego stylu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
+                    <p><strong>Cena: 950 zł</strong></p>
                     <div class="product-actions">
                         <button class="btn btn-small" onclick="openOrderModal('Prestige Brown smooth Clutch')">Sprawdź dostępność</button>
                         <button class="btn btn-small btn-outlet" disabled>Dostępna w outlecie</button>
@@ -940,8 +1004,10 @@
                         <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Heban Total wave Clutch</h3>
-                    <p class="product-description">Torebka w kolorze Heban. Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płynnym, falującym kroju. Głęboka, hebanowa czerń promieniuje klasą i wyrafinowaniem, tworząc aurę niepowtarzalnej elegancji. Nowoczesne, precyzyjne cięcia akcentują jej szykowny charakter, czyniąc ją kwintesencją luksusu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
-                    <p><strong class="product-price">Cena: 1250 zł</strong></p>
+                    <p>Torebka w kolorze Heban
+Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płynnym, falującym kroju. Głęboka, hebanowa czerń promieniuje klasą i wyrafinowaniem, tworząc aurę niepowtarzalnej elegancji. Nowoczesne, precyzyjne cięcia akcentują jej szykowny charakter, czyniąc ją kwintesencją luksusu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.
+</p>
+                    <p><strong>Cena: 1250 zł</strong></p>
                     <div class="product-actions">
                         <button class="btn btn-small" onclick="openOrderModal('Heban Total wave Clutch')">Sprawdź dostępność</button>
                         <button class="btn btn-small btn-outlet" disabled>Dostępna w outlecie</button>
@@ -959,8 +1025,9 @@
                         <!-- Dodatkowe zdjęcia będą dodane dynamicznie przez JavaScript -->
                     </div>
                     <h3>Natural Timber smooth Clutch</h3>
-                    <p class="product-description">Torebka w kolorze naturalnego drewna. Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasycznym, prostym kroju. Naturalny odcień drewna eksponuje jej organiczne piękno, nadając wyjątkowego, subtelnego uroku. Proste, lecz wyrafinowane cięcia podkreślają ekskluzywność i artystyczny charakter, czyniąc ją prawdziwym dziełem sztuki. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
-                    <p><strong class="product-price">Cena: 1100 zł</strong></p>
+                    <p>Torebka w kolorze naturalnego drewna
+Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasycznym, prostym kroju. Naturalny odcień drewna eksponuje jej organiczne piękno, nadając wyjątkowego, subtelnego uroku. Proste, lecz wyrafinowane cięcia podkreślają ekskluzywność i artystyczny charakter, czyniąc ją prawdziwym dziełem sztuki. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm.</p>
+                    <p><strong>Cena: 1100 zł</strong></p>
                     <div class="product-actions">
                         <button class="btn btn-small" onclick="openOrderModal('Natural Timber smooth Clutch')">Sprawdź dostępność</button>
                         <button class="btn btn-small btn-outlet" disabled>Dostępna w outlecie</button>
@@ -989,18 +1056,6 @@
         </p>
     </footer>
 
-    <!-- Modal administracyjny -->
-    <div id="adminModal" class="admin-modal">
-        <div class="admin-modal-content">
-            <span class="admin-close" onclick="closeAdminPanel()">&times;</span>
-            <h2>Panel administracyjny - Edycja cen i opisów</h2>
-            <div id="admin-products-list">
-                <!-- Produkty będą dodane dynamicznie przez JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Pozostałe modale (imageModal, contactModal, orderModal) pozostają bez zmian -->
     <div id="imageModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -1028,6 +1083,7 @@
         </div>
     </div>
 
+    <!-- Modal zamówienia -->
     <div id="orderModal" class="order-modal">
         <div class="order-modal-content">
             <span class="order-close" onclick="closeOrderModal()">&times;</span>
@@ -1051,122 +1107,32 @@
         </div>
     </div>
 
+    <!-- Modal outlet -->
+    <div id="outletModal" class="outlet-modal">
+        <div class="outlet-modal-content">
+            <span class="outlet-close" onclick="closeOutletModal()">&times;</span>
+            <h2>Outlet - pytania</h2>
+            <form class="outlet-form" id="outletForm">
+                <label for="outlet-product-name">Produkt:</label>
+                <input type="text" id="outlet-product-name" readonly>
+
+                <label for="outlet-email">Email kontaktowy *</label>
+                <input type="email" id="outlet-email" placeholder="Twój adres email" required>
+
+                <label for="outlet-phone">Numer telefonu (opcjonalnie)</label>
+                <input type="tel" id="outlet-phone" placeholder="Twój numer telefonu">
+
+                <label for="outlet-message">Wiadomość:</label>
+                <textarea id="outlet-message" placeholder="Proszę o przesłanie zdjęć i informacji o artykule w outlecie..." required></textarea>
+                <p class="form-note">Prosimy o przesłanie zdjęć oraz dodatkowych informacji o produkcie dostępnym w outlecie.</p>
+
+                <button type="submit">Wyślij zapytanie</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // ==================== PANEL ADMINISTRACYJNY ====================
-        
-        let productsData = JSON.parse(localStorage.getItem('zanariProducts')) || [
-            {
-                id: 1,
-                name: "Havana Elegance smooth Satchel",
-                price: "1300 zł",
-                description: "Torebka w odcieniu Havana. Elegancka torebka \"kopertówka\" wielkości z wymiennym łańcuszkiem na ramię i klapą o prostym kroju. Subtelny odcień jasnego brązu Havana harmonizuje z naturalnym pięknem materiału, podkreślając jego autentyczność. Nowoczesne linie cięcia nadają jej wyrafinowany styl i ponadczasową elegancję. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm."
-            },
-            {
-                id: 2,
-                name: "Heban Total smooth Satchel",
-                price: "1500 zł",
-                description: "Torebka w kolorze Heban. Średniej wielkości torebka \"kopertówka\" z wymiennym łańcuszkiem na ramię i klapą w prostym stylu. Głęboka czerń Hebanu emanuje klasą i wyrafinowaniem, tworząc aurę ponadczasowej elegancji. Precyzyjne, nowoczesne linie cięcia podkreślają jej szykowny charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm."
-            },
-            {
-                id: 3,
-                name: "Natural Timber Glamour wave Satchel",
-                price: "1650 zł",
-                description: "Torebka w kolorze naturalnego drewna. Średniej wielkości torebka \"kopertówka\" z wymiennym łańcuszkiem na ramię i klapą o falującym kroju. Naturalny odcień drewna eksponuje jej organiczne pochodzenie, dodając wyjątkowego uroku. Stylowe linie cięcia w klimacie glamour akcentują ekskluzywność i wyrafinowany charakter. Wykonana z drewna brzozowego, o wymiarach 26,5 x 13,5 x 5,5 cm."
-            },
-            {
-                id: 4,
-                name: "Prestige Brown smooth Clutch",
-                price: "950 zł",
-                description: "Torebka w odcieniu Teak. Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyrafinowanym, prostym kroju. Ciepły, złocisty odcień teku harmonizuje z naturalną fakturą drewna, subtelnie podkreślając jego autentyczne piękno. Precyzyjne, współczesne linie cięcia dodają jej ponadczasowej elegancji i wyrafinowanego stylu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm."
-            },
-            {
-                id: 5,
-                name: "Heban Total wave Clutch",
-                price: "1250 zł",
-                description: "Torebka w kolorze Heban. Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płynnym, falującym kroju. Głęboka, hebanowa czerń promieniuje klasą i wyrafinowaniem, tworząc aurę niepowtarzalnej elegancji. Nowoczesne, precyzyjne cięcia akcentują jej szykowny charakter, czyniąc ją kwintesencją luksusu. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm."
-            },
-            {
-                id: 6,
-                name: "Natural Timber smooth Clutch",
-                price: "1100 zł",
-                description: "Torebka w kolorze naturalnego drewna. Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasycznym, prostym kroju. Naturalny odcień drewna eksponuje jej organiczne piękno, nadając wyjątkowego, subtelnego uroku. Proste, lecz wyrafinowane cięcia podkreślają ekskluzywność i artystyczny charakter, czyniąc ją prawdziwym dziełem sztuki. Wykonana z drewna brzozowego, wymiary: 20 x 14 x 4,5 cm."
-            }
-        ];
-
-        function openAdminPanel() {
-            const adminModal = document.getElementById('adminModal');
-            const productsList = document.getElementById('admin-products-list');
-            
-            productsList.innerHTML = '';
-            
-            productsData.forEach((product, index) => {
-                const productEdit = document.createElement('div');
-                productEdit.className = 'product-edit';
-                productEdit.innerHTML = `
-                    <h4>Produkt ${product.id}: ${product.name}</h4>
-                    <label>Cena:</label>
-                    <input type="text" value="${product.price}" class="admin-price-${product.id}">
-                    <label>Opis:</label>
-                    <textarea class="admin-description-${product.id}">${product.description}</textarea>
-                    <button class="save-btn" onclick="saveProduct(${product.id})">Zapisz zmiany</button>
-                `;
-                productsList.appendChild(productEdit);
-            });
-            
-            adminModal.style.display = 'block';
-        }
-
-        function closeAdminPanel() {
-            const adminModal = document.getElementById('adminModal');
-            adminModal.style.display = 'none';
-        }
-
-        function saveProduct(productId) {
-            const priceInput = document.querySelector(`.admin-price-${productId}`);
-            const descriptionInput = document.querySelector(`.admin-description-${productId}`);
-            
-            const productIndex = productsData.findIndex(p => p.id === productId);
-            if (productIndex !== -1) {
-                productsData[productIndex].price = priceInput.value;
-                productsData[productIndex].description = descriptionInput.value;
-                
-                // Zapisz w localStorage
-                localStorage.setItem('zanariProducts', JSON.stringify(productsData));
-                
-                // Zaktualizuj na stronie
-                updateProductOnPage(productId);
-                
-                alert('Zmiany zapisane!');
-            }
-        }
-
-        function updateProductOnPage(productId) {
-            const productData = productsData.find(p => p.id === productId);
-            if (productData) {
-                const items = document.querySelectorAll('.item');
-                const item = items[productId - 1];
-                
-                if (item) {
-                    const priceElement = item.querySelector('.product-price');
-                    const descriptionElement = item.querySelector('.product-description');
-                    
-                    if (priceElement) {
-                        priceElement.textContent = `Cena: ${productData.price}`;
-                    }
-                    if (descriptionElement) {
-                        descriptionElement.textContent = productData.description;
-                    }
-                }
-            }
-        }
-
-        function loadProductsData() {
-            productsData.forEach(product => {
-                updateProductOnPage(product.id);
-            });
-        }
-
-        // ==================== POZOSTAŁE FUNKCJE ====================
+        // ==================== FUNKCJE OUTLET ====================
 
         // Funkcja do aktywowania outlet dla konkretnego produktu
         function activateOutlet(productNumber) {
@@ -1182,9 +1148,62 @@
             }
         }
 
+        // Funkcje dla modala outlet
+        function openOutletModal(productName) {
+            const outletModal = document.getElementById('outletModal');
+            const productNameInput = document.getElementById('outlet-product-name');
+            const outletMessage = document.getElementById('outlet-message');
+
+            if (outletModal && productNameInput) {
+                productNameInput.value = productName;
+                outletMessage.value = `Chciałbym/chciałabym otrzymać zdjęcia i informacje o produkcie "${productName}" dostępnym w outlecie. `;
+                outletModal.style.display = 'block';
+            }
+        }
+
+        function closeOutletModal() {
+            const outletModal = document.getElementById('outletModal');
+            if (outletModal) outletModal.style.display = 'none';
+        }
+
+        // Obsługa formularza outlet
+        document.getElementById('outletForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const productName = document.getElementById('outlet-product-name').value;
+            const email = document.getElementById('outlet-email').value;
+            const phone = document.getElementById('outlet-phone').value;
+            const message = document.getElementById('outlet-message').value;
+
+            // Walidacja email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Proszę podać prawidłowy adres e-mail.');
+                return;
+            }
+
+            // Tutaj można dodać kod do wysłania danych outlet
+            // Na przykład przez fetch() do backendu lub email
+
+            alert(`Dziękujemy za zapytanie dotyczące produktu w outlecie: ${productName}\n\nSkontaktujemy się z Tobą w ciągu 24 godzin z zdjęciami i informacjami.`);
+            closeOutletModal();
+
+            // Reset formularza
+            this.reset();
+        });
+
+        // ==================== POZOSTAŁE FUNKCJE ====================
+
         const videos = [
             { video: document.getElementById('video-1'), button: document.getElementById('speaker-btn-1'), icon: document.getElementById('speaker-icon-1') },
-            // ... pozostałe filmy ...
+            { video: document.getElementById('video-2'), button: document.getElementById('speaker-btn-2'), icon: document.getElementById('speaker-icon-2') },
+            { video: document.getElementById('video-3'), button: document.getElementById('speaker-btn-3'), icon: document.getElementById('speaker-icon-3') },
+            { video: document.getElementById('video-4'), button: document.getElementById('speaker-btn-4'), icon: document.getElementById('speaker-icon-4') },
+            { video: document.getElementById('video-5'), button: document.getElementById('speaker-btn-5'), icon: document.getElementById('speaker-icon-5') },
+            { video: document.getElementById('video-6'), button: document.getElementById('speaker-btn-6'), icon: document.getElementById('speaker-icon-6') },
+            { video: document.getElementById('video-7'), button: document.getElementById('speaker-btn-7'), icon: document.getElementById('speaker-icon-7') },
+            { video: document.getElementById('video-8'), button: document.getElementById('speaker-btn-8'), icon: document.getElementById('speaker-icon-8') },
+            { video: document.getElementById('video-9'), button: document.getElementById('speaker-btn-9'), icon: document.getElementById('speaker-icon-9') }
         ];
 
         let currentVideoIndex = 0;
@@ -1201,17 +1220,284 @@
             videos[currentVideoIndex].icon.alt = 'Włącz dźwięk';
         }
 
-        // ... pozostały kod JavaScript (toggleMute, imageExists, loadAdditionalImages, openModal, closeModal, etc.) ...
-
-        // Załaduj dane produktów po załadowaniu strony
-        document.addEventListener('DOMContentLoaded', function() {
-            loadAdditionalImages();
-            updateSocialLinks("https://www.instagram.com/zanariwood/", "https://www.facebook.com/profile.php?id=61582568185533");
-            loadProductsData();
+        videos.forEach((videoObj, index) => {
+            videoObj.video.addEventListener('ended', playNextVideo);
         });
 
-        // Pozostałe funkcje pozostają bez zmian
-        // ... (reszta kodu JavaScript)
+        function toggleMute(index) {
+            const videoObj = videos[index - 1];
+            videoObj.video.muted = !videoObj.video.muted;
+            if (videoObj.video.muted) {
+                videoObj.icon.src = 'ikony/speaker-off.png';
+                videoObj.icon.alt = 'Włącz dźwięk';
+            } else {
+                videoObj.icon.src = 'ikony/speaker-on.png';
+                videoObj.icon.alt = 'Wyłącz dźwięk';
+            }
+        }
+
+        let slideIndex = 0;
+        let currentImages = [];
+
+        // Funkcja do sprawdzania czy obrazek istnieje
+        function imageExists(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+        }
+
+        // Funkcja do ładowania dodatkowych zdjęć (do litery f)
+        async function loadAdditionalImages() {
+            const items = document.querySelectorAll('.item');
+
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                const additionalContainer = item.querySelector('.additional-images');
+                const baseImageSrc = item.querySelector('.item-images img').src;
+
+                // Pobierz bazową nazwę pliku (bez rozszerzenia i ostatniej litery)
+                const basePath = baseImageSrc.substring(0, baseImageSrc.lastIndexOf('.'));
+                const baseName = basePath.substring(0, basePath.length - 1); // Usuń ostatnią literę (a/b)
+
+                // Lista możliwych dodatkowych zdjęć (c, d, e, f)
+                const additionalLetters = ['c', 'd', 'e', 'f'];
+                let existingImages = [];
+
+                // Sprawdź które zdjęcia istnieją
+                for (const letter of additionalLetters) {
+                    const imageUrl = baseName + letter + '.jpg';
+                    const exists = await imageExists(imageUrl);
+                    if (exists) {
+                        existingImages.push({ url: imageUrl, letter: letter });
+                    }
+                }
+
+                // Dodaj tylko te zdjęcia które istnieją
+                for (const imgData of existingImages) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imgData.url;
+                    imgElement.alt = additionalContainer.previousElementSibling.querySelector('img').alt.replace('widok 1', `widok ${imgData.letter.toUpperCase()}`).replace('widok 2', `widok ${imgData.letter.toUpperCase()}`);
+                    imgElement.onclick = function() { openModal(this); };
+                    additionalContainer.appendChild(imgElement);
+                }
+
+                // Jeśli nie ma żadnych dodatkowych zdjęć, ukryj kontener
+                if (existingImages.length === 0) {
+                    additionalContainer.style.display = 'none';
+                }
+            }
+        }
+
+        function openModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            if (!modal || !modalImg) return;
+            modal.style.display = 'flex';
+            modalImg.src = img.src;
+
+            if (img.src.includes('logo.png')) {
+                currentImages = [document.querySelector('.logo img')];
+                slideIndex = 0;
+            } else if (img.src.includes('proces_rzemieslniczy1.png')) {
+                currentImages = [document.querySelector('.craftsmanship img')];
+                slideIndex = 0;
+            } else {
+                const item = img.closest('.item');
+                if (item) {
+                    const allImages = Array.from(item.querySelectorAll('.item-images img, .additional-images img'));
+                    currentImages = allImages;
+                    slideIndex = currentImages.indexOf(img);
+                } else {
+                    currentImages = [img];
+                    slideIndex = 0;
+                }
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            if (modal) modal.style.display = 'none';
+            currentImages = [];
+            slideIndex = 0;
+        }
+
+        function plusSlides(n) {
+            slideIndex += n;
+            if (slideIndex >= currentImages.length) { slideIndex = 0; }
+            if (slideIndex < 0) { slideIndex = currentImages.length - 1; }
+            const modalImg = document.getElementById('modalImage');
+            if (modalImg && currentImages[slideIndex]) {
+                modalImg.src = currentImages[slideIndex].src;
+            }
+        }
+
+        // Funkcje dla modala zamówienia
+        function openOrderModal(productName) {
+            const orderModal = document.getElementById('orderModal');
+            const productNameInput = document.getElementById('product-name');
+            const orderMessage = document.getElementById('order-message');
+
+            if (orderModal && productNameInput) {
+                productNameInput.value = productName;
+                orderMessage.value = `Chciałbym/chciałabym zapytać o dostępność produktu "${productName}". `;
+                orderModal.style.display = 'block';
+            }
+        }
+
+        function closeOrderModal() {
+            const orderModal = document.getElementById('orderModal');
+            if (orderModal) orderModal.style.display = 'none';
+        }
+
+        // Obsługa formularza zamówienia
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const productName = document.getElementById('product-name').value;
+            const email = document.getElementById('contact-email').value;
+            const phone = document.getElementById('contact-phone').value;
+            const message = document.getElementById('order-message').value;
+
+            // Walidacja email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Proszę podać prawidłowy adres e-mail.');
+                return;
+            }
+
+            // Tutaj można dodać kod do wysłania danych zamówienia
+            // Na przykład przez fetch() do backendu lub email
+
+            alert(`Dziękujemy za zapytanie dotyczące produktu: ${productName}\n\nSkontaktujemy się z Tobą w ciągu 24 godzin.`);
+            closeOrderModal();
+
+            // Reset formularza
+            this.reset();
+        });
+
+        // Funkcja do aktualizacji linków społecznościowych
+        function updateSocialLinks(instagramUrl = "https://www.instagram.com/zanariwood/", facebookUrl = "https://www.facebook.com/profile.php?id=61582568185533") {
+            // Linki w sekcji kontakt na głównej stronie
+            document.getElementById('main-instagram').href = instagramUrl;
+            document.getElementById('main-facebook').href = facebookUrl;
+
+            // Linki w footerze
+            document.getElementById('footer-instagram').href = instagramUrl;
+            document.getElementById('footer-facebook').href = facebookUrl;
+
+            // Linki w modal kontaktowy
+            document.getElementById('contact-instagram').href = instagramUrl;
+            document.getElementById('contact-facebook').href = facebookUrl;
+        }
+
+        // Funkcja do powiększania/zmniejszania obrazka procesu rzemieślniczego
+        function toggleZoom(img) {
+            img.classList.toggle('zoomed');
+
+            if (img.classList.contains('zoomed')) {
+                // Blokujemy scrollowanie strony gdy obrazek jest powiększony
+                document.body.style.overflow = 'hidden';
+                // Dodajemy możliwość zamknięcia przez dotknięcie gdziekolwiek
+                setTimeout(() => {
+                    document.addEventListener('click', closeZoomOnClick);
+                }, 100);
+            } else {
+                // Przywracamy scrollowanie
+                document.body.style.overflow = 'auto';
+                // Usuwamy listener
+                document.removeEventListener('click', closeZoomOnClick);
+            }
+        }
+
+        function closeZoomOnClick(event) {
+            const craftsmanshipImg = document.querySelector('.craftsmanship img.zoomed');
+            if (craftsmanshipImg && !craftsmanshipImg.contains(event.target)) {
+                craftsmanshipImg.classList.remove('zoomed');
+                document.body.style.overflow = 'auto';
+                document.removeEventListener('click', closeZoomOnClick);
+            }
+        }
+
+        // Zamykanie powiększonego obrazka klawiszem ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const craftsmanshipImg = document.querySelector('.craftsmanship img.zoomed');
+                if (craftsmanshipImg) {
+                    craftsmanshipImg.classList.remove('zoomed');
+                    document.body.style.overflow = 'auto';
+                    document.removeEventListener('click', closeZoomOnClick);
+                }
+
+                const orderModal = document.getElementById('orderModal');
+                if (orderModal && orderModal.style.display === 'block') {
+                    closeOrderModal();
+                }
+
+                const outletModal = document.getElementById('outletModal');
+                if (outletModal && outletModal.style.display === 'block') {
+                    closeOutletModal();
+                }
+            }
+        });
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            const contactModal = document.getElementById('contactModal');
+            const orderModal = document.getElementById('orderModal');
+            const outletModal = document.getElementById('outletModal');
+
+            if (event.target == modal) {
+                closeModal();
+            }
+            if (event.target == contactModal) {
+                contactModal.style.display = 'none';
+            }
+            if (event.target == orderModal) {
+                orderModal.style.display = 'none';
+            }
+            if (event.target == outletModal) {
+                outletModal.style.display = 'none';
+            }
+        }
+
+        function openContactModal() {
+            const contactModal = document.getElementById('contactModal');
+            if (contactModal) contactModal.style.display = 'block';
+        }
+
+        function closeContactModal() {
+            const contactModal = document.getElementById('contactModal');
+            if (contactModal) contactModal.style.display = 'none';
+        }
+
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Proszę podać prawidłowy adres e-mail.');
+                return;
+            }
+            alert('Wiadomość wysłana!');
+            closeContactModal();
+        });
+
+        // Załaduj dodatkowe zdjęcia i ustaw linki społecznościowe po załadowaniu strony
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAdditionalImages();
+
+            // Ustaw linki do social media
+            updateSocialLinks("https://www.instagram.com/zanariwood/", "https://www.facebook.com/profile.php?id=61582568185533");
+
+            // Dodaj event listenery dla aktywnych przycisków outlet
+            document.querySelectorAll('.btn-outlet:not(:disabled)').forEach(btn => {
+                const productName = btn.closest('.item').querySelector('h3').textContent;
+                btn.addEventListener('click', () => openOutletModal(productName));
+            });
+        });
     </script>
 </body>
 </html>
