@@ -220,36 +220,39 @@
         .btn-small {
             padding: 0.5rem 1rem;
             font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-       .btn-outlet {
-    background: #c9a66b;
-    color: #2f2319;
-    border: 2px solid #f8efe4;
-    margin: 2px;
-    margin-left: 0px;
-}
-.btn-outlet:hover {
-    background: #b5915a;
-    border-color: #f8efe4;
-}
-.btn-outlet:disabled {
-    background: #95a5a6;
-    cursor: not-allowed;
-    position: relative;
-    border: none;
-}
-.btn-outlet:disabled::after {
-    content: '';
-    position: absolute;
-    top: 55%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #7f8c8d;
-    transform: translateY(-50%);
-}
-.btn-outlet:disabled:hover {
-    background: #95a5a6;
-}
+        }
+        /* === POCZĄTEK ZMIANY PRZYCISKU OUTLET (linia 176) === */
+        .btn-outlet {
+            background: #c9a66b;
+            color: #2f2319;
+            border: 2px solid #f8efe4;
+            margin: 2px;
+            margin-left: 0px;
+        }
+        .btn-outlet:hover {
+            background: #b5915a;
+            border-color: #f8efe4;
+        }
+        .btn-outlet:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            position: relative;
+            border: none;
+        }
+        .btn-outlet:disabled::after {
+            content: '';
+            position: absolute;
+            top: 55%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #7f8c8d;
+            transform: translateY(-50%);
+        }
+        .btn-outlet:disabled:hover {
+            background: #95a5a6;
+        }
+        /* === KONIEC ZMIANY PRZYCISKU OUTLET (linia 199) === */
         .product-actions {
             display: flex;
             justify-content: center;
@@ -547,86 +550,87 @@
             color: #c9a66b;
             font-weight: bold;
         }
-      /* Modal outlet */
-.outlet-modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
-}
-.outlet-modal-content {
-    background-color: #5c4635;
-    margin: 5% auto;
-    padding: 25px;
-    border: 1px solid #c9a66b;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 10px;
-    color: #f8efe4;
-}
-.outlet-close {
-    color: #c9a66b;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-.outlet-close:hover {
-    color: #b5915a;
-}
-.outlet-form {
-    display: flex;
-    flex-direction: column;
-}
-.outlet-form label {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #c9a66b;
-}
-.outlet-form input, .outlet-form textarea {
-    margin-bottom: 1.5rem;
-    padding: 0.75rem;
-    border: 1px solid #c9a66b;
-    border-radius: 5px;
-    background: #4a3728;
-    color: #f8efe4;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-}
-.outlet-form textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-.outlet-form button {
-    background: #c9a66b;
-    color: #2f2319;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    font-size: 1.1rem;
-    margin-top: 1rem;
-}
-.outlet-form button:hover {
-    background: #b5915a;
-}
-.outlet-modal-content h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 1.4rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #c9a66b;
-    font-weight: bold;
-}
+        /* === POCZĄTEK ZMIANY MODALA OUTLET (linia 394) === */
+        /* Modal outlet */
+        .outlet-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
         }
+        .outlet-modal-content {
+            background-color: #5c4635;
+            margin: 5% auto;
+            padding: 25px;
+            border: 1px solid #c9a66b;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            color: #f8efe4;
+        }
+        .outlet-close {
+            color: #c9a66b;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .outlet-close:hover {
+            color: #b5915a;
+        }
+        .outlet-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .outlet-form label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #c9a66b;
+        }
+        .outlet-form input, .outlet-form textarea {
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            border: 1px solid #c9a66b;
+            border-radius: 5px;
+            background: #4a3728;
+            color: #f8efe4;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+        }
+        .outlet-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .outlet-form button {
+            background: #c9a66b;
+            color: #2f2319;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        .outlet-form button:hover {
+            background: #b5915a;
+        }
+        .outlet-modal-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #c9a66b;
+            font-weight: bold;
+        }
+        /* === KONIEC ZMIANY MODALA OUTLET (linia 456) === */
         @media (max-width: 768px) {
             .intro {
                 flex-direction: column;
@@ -1505,5 +1509,3 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
     </script>
 </body>
 </html>
-
-
