@@ -222,21 +222,25 @@
             font-size: clamp(0.8rem, 1.8vw, 0.9rem);
         }
         .btn-outlet {
-            background: #e74c3c;
-            margin-left: 0px; /* Przesunięcie w prawo */
+            background: #c9a66b;
+            color: #2f2319;
+            border: 2px solid #e74c3c;
+            margin-left: 0px;
         }
         .btn-outlet:hover {
-            background: #c0392b;
+            background: #b5915a;
+            border-color: #c0392b;
         }
         .btn-outlet:disabled {
             background: #95a5a6;
             cursor: not-allowed;
             position: relative;
+            border: none;
         }
         .btn-outlet:disabled::after {
             content: '';
             position: absolute;
-            top: 55%; /* Przesunięcie przekreślenia niżej */
+            top: 55%;
             left: 0;
             right: 0;
             height: 2px;
@@ -923,7 +927,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                     <p><strong>Cena: 1300 zł</strong></p>
                     <div class="product-actions">
                         <button class="btn btn-small" onclick="openOrderModal('Havana Elegance smooth Satchel')">Sprawdź dostępność</button>
-                        <button class="btn btn-small btn-outlet" onclick="openOutletModal('Heban Total smooth Satchel')">Dostępna w outlecie</button>
+                        <button class="btn btn-small btn-outlet" disabled>Dostępna w outlecie</button>
                     </div>
                 </div>
 
@@ -944,7 +948,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                     <p><strong>Cena: 1500 zł</strong></p>
                     <div class="product-actions">
                         <button class="btn btn-small" onclick="openOrderModal('Heban Total smooth Satchel')">Sprawdź dostępność</button>
-                        <button class="btn btn-small btn-outlet" disabled>Dostępna w outlecie</button>
+                        <button class="btn btn-small btn-outlet" onclick="openOutletModal('Heban Total smooth Satchel')">Dostępna w outlecie</button>
                     </div>
                 </div>
 
@@ -1123,8 +1127,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 <input type="tel" id="outlet-phone" placeholder="Twój numer telefonu">
 
                 <label for="outlet-message">Wiadomość:</label>
-                <textarea id="outlet-message" placeholder="Proszę o przesłanie zdjęć i informacji o artykule w outlecie..." required></textarea>
-                <p class="form-note">Prosimy o przesłanie zdjęć oraz dodatkowych informacji o produkcie dostępnym w outlecie.</p>
+                <textarea id="outlet-message" placeholder="Chciałbym/chciałabym otrzymać zdjęcia produktu oraz informacje o stanie tego produktu dostępnego w outlecie." required></textarea>
 
                 <button type="submit">Wyślij zapytanie</button>
             </form>
@@ -1156,7 +1159,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
 
             if (outletModal && productNameInput) {
                 productNameInput.value = productName;
-                outletMessage.value = `Chciałbym/chciałabym otrzymać zdjęcia i informacje o produkcie "${productName}" dostępnym w outlecie. `;
+                outletMessage.value = `Chciałbym/chciałabym otrzymać zdjęcia produktu "${productName}" oraz informacje o stanie tego produktu dostępnego w outlecie.`;
                 outletModal.style.display = 'block';
             }
         }
@@ -1501,5 +1504,3 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
     </script>
 </body>
 </html>
-
-
