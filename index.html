@@ -796,7 +796,7 @@
             <div class="intro-description">
                 <h2>Witamy w świecie Zanari</h2>
                 <p>Dla dystyngowanych kobiet, które cenią sobie unikalność i luksus. Nasze torebki powstają z najwyższej jakości drewna, ręcznie wykonywane z dbałością o każdy detal. Każda jest wyjątkowym i niepowtarzalnym dziełem sztuki – ekologiczna, elegancka i ponadczasowa.</p>
-                <p>Wyobraź sobie, jak trzymasz w dłoni unikalny skarb natury, który podkreśla Twoją elegancję, wyjątkowość i niepowtarzalny styl. Torebka Zanari to nie tylko dodatek – to symbol Twojej siły, piękna i ponadczasowej klasy, który sprawi, że poczujesz się wyjątkowa w każdym momente. Nie czekaj, zainwestuj w luksus, na który zasługujesz – stań się posiadaczką niepowtarzalnego dzieła sztuki, które przyciąga spojrzenia i budzi podziw.</p>
+                <p>Wyobraź sobie, jak trzymasz w dłoni unikalny skarb natury, który podkreśla Twoją elegancję, wyjątkowość i niepowtarzalny styl. Torebka Zanari to nie tylko dodatek – to symbol Twojej siły, piękna i ponadczasowej klasy, który sprawi, że poczujesz się wyjątkowa w każdym momente. Nie czekaj, zainwestuj in luksus, na który zasługujesz – stań się posiadaczką niepowtarzalnego dzieła sztuki, które przyciąga spojrzenia i budzi podziw.</p>
                 <a href="#kolekcja" class="btn">Odkryj kolekcję</a>
             </div>
             <div class="intro-video">
@@ -1074,10 +1074,12 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         <div class="contact-modal-content">
             <span class="contact-close" onclick="closeContactModal()">&times;</span>
             <h2>Wyślij wiadomość</h2>
-            <form class="contact-form">
-                <input type="text" placeholder="Imię" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Wiadomość" required></textarea>
+            <form class="contact-form" action="https://formsubmit.co/zanariwood@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Nowa wiadomość ze strony Zanari">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="text" name="name" placeholder="Imię" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Wiadomość" required></textarea>
                 <button type="submit">Wyślij</button>
             </form>
             <div class="contact-info">
@@ -1095,18 +1097,21 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         <div class="order-modal-content">
             <span class="order-close" onclick="closeOrderModal()">&times;</span>
             <h2>Składanie zamówienia / pytania</h2>
-            <form class="order-form" id="orderForm">
+            <form class="order-form" id="orderForm" action="https://formsubmit.co/zanariwood@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Zapytanie o dostępność produktu - Zanari">
+                <input type="hidden" name="_captcha" value="false">
+                
                 <label for="product-name">Produkt:</label>
-                <input type="text" id="product-name" readonly>
+                <input type="text" id="product-name" name="product" readonly>
 
                 <label for="contact-email">Email kontaktowy *</label>
-                <input type="email" id="contact-email" placeholder="Twój adres email" required>
+                <input type="email" id="contact-email" name="email" placeholder="Twój adres email" required>
 
                 <label for="contact-phone">Numer telefonu (opcjonalnie)</label>
-                <input type="tel" id="contact-phone" placeholder="Twój numer telefonu">
+                <input type="tel" id="contact-phone" name="phone" placeholder="Twój numer telefonu">
 
                 <label for="order-message">Wiadomość:</label>
-                <textarea id="order-message" placeholder="Twoja wiadomość..." required></textarea>
+                <textarea id="order-message" name="message" placeholder="Twoja wiadomość..." required></textarea>
                 <p class="form-note">Prosimy o informację dotyczącą dostępności produktu oraz wszelkie dodatkowe pytania lub uwagi.</p>
 
                 <button type="submit">Wyślij</button>
@@ -1119,18 +1124,21 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         <div class="outlet-modal-content">
             <span class="outlet-close" onclick="closeOutletModal()">&times;</span>
             <h2>Outlet - pytania</h2>
-            <form class="outlet-form" id="outletForm">
+            <form class="outlet-form" id="outletForm" action="https://formsubmit.co/zanariwood@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Zapytanie o produkt w outlecie - Zanari">
+                <input type="hidden" name="_captcha" value="false">
+                
                 <label for="outlet-product-name">Produkt:</label>
-                <input type="text" id="outlet-product-name" readonly>
+                <input type="text" id="outlet-product-name" name="product" readonly>
 
                 <label for="outlet-email">Email kontaktowy *</label>
-                <input type="email" id="outlet-email" placeholder="Twój adres email" required>
+                <input type="email" id="outlet-email" name="email" placeholder="Twój adres email" required>
 
                 <label for="outlet-phone">Numer telefonu (opcjonalnie)</label>
-                <input type="tel" id="outlet-phone" placeholder="Twój numer telefonu">
+                <input type="tel" id="outlet-phone" name="phone" placeholder="Twój numer telefonu">
 
                 <label for="outlet-message">Wiadomość:</label>
-                <textarea id="outlet-message" placeholder="Chciałbym/chciałabym otrzymać zdjęcia produktu oraz informacje o stanie tego produktu dostępnego w outlecie." required></textarea>
+                <textarea id="outlet-message" name="message" placeholder="Chciałbym/chciałabym otrzymać zdjęcia produktu oraz informacje o stanie tego produktu dostępnego w outlecie." required></textarea>
 
                 <button type="submit">Wyślij zapytanie</button>
             </form>
@@ -1140,40 +1148,31 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
     <script>
         // ==================== FUNKCJE OUTLET ====================
 
-        // Funkcja do aktywowania outlet dla konkretnego produktu
-// Funkcje dla modala outlet
-function openOutletModal(productName) {
-    const outletModal = document.getElementById('outletModal');
-    const productNameInput = document.getElementById('outlet-product-name');
-    const outletMessage = document.getElementById('outlet-message');
+        function openOutletModal(productName) {
+            const outletModal = document.getElementById('outletModal');
+            const productNameInput = document.getElementById('outlet-product-name');
+            const outletMessage = document.getElementById('outlet-message');
 
-    if (outletModal && productNameInput) {
-        // Znajdź cenę produktu tylko jeśli przycisk outlet jest aktywny
-        let priceInfo = '';
-        const items = document.querySelectorAll('.item');
-        
-        for (let item of items) {
-            const itemName = item.querySelector('h3').textContent;
-            if (itemName === productName) {
-                const outletBtn = item.querySelector('.btn-outlet');
-                // Sprawdź czy przycisk outlet jest aktywny (nie ma disabled)
-                if (outletBtn && !outletBtn.disabled) {
-                    const priceText = item.querySelector('strong').textContent;
-                    const originalPrice = parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
-                    if (!isNaN(originalPrice)) {
-                        const discountedPrice = (originalPrice * 0.7).toFixed(0);
-                        priceInfo = `\n\nCena outlet: ${discountedPrice} zł (obniżka 30% z ceny ${originalPrice} zł)`;
+            if (outletModal && productNameInput) {
+                // Znajdź cenę produktu tylko jeśli przycisk outlet jest aktywny
+                let priceInfo = '';
+                const items = document.querySelectorAll('.item');
+                
+                for (let item of items) {
+                    const itemName = item.querySelector('h3').textContent;
+                    if (itemName === productName) {
+                        const outletBtn = item.querySelector('.btn-outlet');
+                        // Sprawdź czy przycisk outlet jest aktywny (nie ma disabled)
+                        if (outletBtn && !outletBtn.disabled) {
+                            const priceText = item.querySelector('strong').textContent;
+                            const originalPrice = parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
+                            if (!isNaN(originalPrice)) {
+                                const discountedPrice = (originalPrice * 0.7).toFixed(0);
+                                priceInfo = `\n\nCena outlet: ${discountedPrice} zł (obniżka 30% z ceny ${originalPrice} zł)`;
+                            }
+                        }
+                        break;
                     }
-                }
-                break;
-            }
-        }
-        
-        productNameInput.value = productName;
-        outletMessage.value = `Chciałbym/chciałabym otrzymać zdjęcia produktu "${productName}" oraz informacje o stanie tego produktu dostępnego w outlecie.${priceInfo}`;
-        outletModal.style.display = 'block';
-    }
-}
                 }
                 
                 productNameInput.value = productName;
@@ -1186,32 +1185,6 @@ function openOutletModal(productName) {
             const outletModal = document.getElementById('outletModal');
             if (outletModal) outletModal.style.display = 'none';
         }
-
-        // Obsługa formularza outlet
-        document.getElementById('outletForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const productName = document.getElementById('outlet-product-name').value;
-            const email = document.getElementById('outlet-email').value;
-            const phone = document.getElementById('outlet-phone').value;
-            const message = document.getElementById('outlet-message').value;
-
-            // Walidacja email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Proszę podać prawidłowy adres e-mail.');
-                return;
-            }
-
-            // Tutaj można dodać kod do wysłania danych outlet
-            // Na przykład przez fetch() do backendu lub email
-
-            alert(`Dziękujemy za zapytanie dotyczące produktu w outlecie: ${productName}\n\nSkontaktujemy się z Tobą w ciągu 24 godzin z zdjęciami i informacjami.`);
-            closeOutletModal();
-
-            // Reset formularza
-            this.reset();
-        });
 
         // ==================== POZOSTAŁE FUNKCJE ====================
 
@@ -1373,32 +1346,6 @@ function openOutletModal(productName) {
             if (orderModal) orderModal.style.display = 'none';
         }
 
-        // Obsługa formularza zamówienia
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const productName = document.getElementById('product-name').value;
-            const email = document.getElementById('contact-email').value;
-            const phone = document.getElementById('contact-phone').value;
-            const message = document.getElementById('order-message').value;
-
-            // Walidacja email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Proszę podać prawidłowy adres e-mail.');
-                return;
-            }
-
-            // Tutaj można dodać kod do wysłania danych zamówienia
-            // Na przykład przez fetch() do backendu lub email
-
-            alert(`Dziękujemy za zapytanie dotyczące produktu: ${productName}\n\nSkontaktujemy się z Tobą w ciągu 24 godzin.`);
-            closeOrderModal();
-
-            // Reset formularza
-            this.reset();
-        });
-
         // Funkcja do aktualizacji linków społecznościowych
         function updateSocialLinks(instagramUrl = "https://www.instagram.com/zanariwood/", facebookUrl = "https://www.facebook.com/profile.php?id=61582568185533") {
             // Linki w sekcji kontakt na głównej stronie
@@ -1494,18 +1441,6 @@ function openOutletModal(productName) {
             if (contactModal) contactModal.style.display = 'none';
         }
 
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Proszę podać prawidłowy adres e-mail.');
-                return;
-            }
-            alert('Wiadomość wysłana!');
-            closeContactModal();
-        });
-
         // Załaduj dodatkowe zdjęcia i ustaw linki społecznościowe po załadowaniu strony
         document.addEventListener('DOMContentLoaded', function() {
             loadAdditionalImages();
@@ -1522,5 +1457,3 @@ function openOutletModal(productName) {
     </script>
 </body>
 </html>
-
-
