@@ -1141,41 +1141,39 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         // ==================== FUNKCJE OUTLET ====================
 
         // Funkcja do aktywowania outlet dla konkretnego produktu
-        function activateOutlet(productNumber) {
-            const items = document.querySelectorAll('.item');
-            if (productNumber >= 1 && productNumber <= items.length) {
-                const item = items[productNumber - 1];
+// Funkcje dla modala outlet
+function openOutletModal(productName) {
+    const outletModal = document.getElementById('outletModal');
+    const productNameInput = document.getElementById('outlet-product-name');
+    const outletMessage = document.getElementById('outlet-message');
+
+    if (outletModal && productNameInput) {
+        // Znajdź cenę produktu tylko jeśli przycisk outlet jest aktywny
+        let priceInfo = '';
+        const items = document.querySelectorAll('.item');
+        
+        for (let item of items) {
+            const itemName = item.querySelector('h3').textContent;
+            if (itemName === productName) {
                 const outletBtn = item.querySelector('.btn-outlet');
-                if (outletBtn) {
-                    outletBtn.disabled = false;
-                    outletBtn.style.textDecoration = 'none';
-                    console.log(`Outlet aktywowany dla produktu nr ${productNumber}`);
+                // Sprawdź czy przycisk outlet jest aktywny (nie ma disabled)
+                if (outletBtn && !outletBtn.disabled) {
+                    const priceText = item.querySelector('strong').textContent;
+                    const originalPrice = parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
+                    if (!isNaN(originalPrice)) {
+                        const discountedPrice = (originalPrice * 0.7).toFixed(0);
+                        priceInfo = `\n\nCena outlet: ${discountedPrice} zł (obniżka 30% z ceny ${originalPrice} zł)`;
+                    }
                 }
+                break;
             }
         }
-
-        // Funkcje dla modala outlet
-        function openOutletModal(productName) {
-            const outletModal = document.getElementById('outletModal');
-            const productNameInput = document.getElementById('outlet-product-name');
-            const outletMessage = document.getElementById('outlet-message');
-
-            if (outletModal && productNameInput) {
-                // Znajdź cenę produktu tylko jeśli przycisk outlet jest aktywny
-                const productItem = document.querySelector(`.item:has(h3:contains("${productName}"))`);
-                let priceInfo = '';
-                
-                if (productItem) {
-                    const outletBtn = productItem.querySelector('.btn-outlet');
-                    // Sprawdź czy przycisk outlet jest aktywny (nie ma disabled)
-                    if (outletBtn && !outletBtn.disabled) {
-                        const priceText = productItem.querySelector('strong').textContent;
-                        const originalPrice = parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
-                        if (!isNaN(originalPrice)) {
-                            const discountedPrice = (originalPrice * 0.7).toFixed(0);
-                            priceInfo = `\n\nCena outlet: ${discountedPrice} zł (obniżka 30% z ceny ${originalPrice} zł)`;
-                        }
-                    }
+        
+        productNameInput.value = productName;
+        outletMessage.value = `Chciałbym/chciałabym otrzymać zdjęcia produktu "${productName}" oraz informacje o stanie tego produktu dostępnego w outlecie.${priceInfo}`;
+        outletModal.style.display = 'block';
+    }
+}
                 }
                 
                 productNameInput.value = productName;
@@ -1524,4 +1522,5 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
     </script>
 </body>
 </html>
+
 
