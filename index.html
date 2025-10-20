@@ -1143,7 +1143,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 <input type="hidden" name="_subject" value="Nowa wiadomość ze strony Zanari">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="#thank-you-page">
+                <input type="hidden" name="_next" value="" id="contact-next">
                 <input type="text" name="name" placeholder="Imię" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <textarea name="message" placeholder="Wiadomość" required></textarea>
@@ -1168,7 +1168,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 <input type="hidden" name="_subject" value="Zapytanie o dostępność produktu - Zanari">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="#thank-you-page">
+                <input type="hidden" name="_next" value="" id="order-next">
                 
                 <label for="product-name">Produkt:</label>
                 <input type="text" id="product-name" name="product" readonly>
@@ -1197,7 +1197,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 <input type="hidden" name="_subject" value="Zapytanie o produkt w outlecie - Zanari">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="#thank-you-page">
+                <input type="hidden" name="_next" value="" id="outlet-next">
                 
                 <label for="outlet-product-name">Produkt:</label>
                 <input type="text" id="outlet-product-name" name="product" readonly>
@@ -1219,25 +1219,14 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
     <script>
         // ==================== OBSŁUGA FORMULARZY ====================
 
-        // Funkcja do obsługi wysyłania formularzy
-        function handleFormSubmit(event, formType) {
-            // Usuwamy preventDefault() aby formularze mogły być wysłane normalnie
-            // event.preventDefault();
+        // Funkcja do ustawiania pełnego URL dla parametru _next
+        function setNextUrls() {
+            const baseUrl = window.location.href.split('#')[0];
+            const thankYouUrl = baseUrl + '#thank-you-page';
             
-            // Zamknij modal przed wysłaniem
-            if (formType === 'contact') {
-                closeContactModal();
-            } else if (formType === 'order') {
-                closeOrderModal();
-            } else if (formType === 'outlet') {
-                closeOutletModal();
-            }
-            
-            // Pokaż stronę z podziękowaniami
-            showThankYouPage();
-            
-            // Pozwól formularzowi na normalne wysłanie
-            return true;
+            document.getElementById('contact-next').value = thankYouUrl;
+            document.getElementById('order-next').value = thankYouUrl;
+            document.getElementById('outlet-next').value = thankYouUrl;
         }
 
         // Funkcja do pokazania strony z podziękowaniami
@@ -1245,9 +1234,6 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             document.getElementById('main-page').style.display = 'none';
             document.getElementById('thank-you-page').style.display = 'block';
             window.scrollTo(0, 0);
-            
-            // Dodajemy hash do URL, aby FormSubmit mógł przekierować z powrotem
-            window.location.hash = 'thank-you-page';
         }
 
         // Funkcja do powrotu do strony głównej
@@ -1255,11 +1241,13 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             document.getElementById('thank-you-page').style.display = 'none';
             document.getElementById('main-page').style.display = 'block';
             window.scrollTo(0, 0);
-            window.location.hash = '';
+            // Usuwamy hash z URL
+            history.replaceState(null, null, ' ');
         }
 
         // Sprawdź hash przy załadowaniu strony
         window.addEventListener('load', function() {
+            setNextUrls(); // Ustaw pełne URL dla formularzy
             if (window.location.hash === '#thank-you-page') {
                 showThankYouPage();
             }
@@ -1563,6 +1551,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         // Załaduj dodatkowe zdjęcia i ustaw linki społecznościowe po załadowaniu strony
         document.addEventListener('DOMContentLoaded', function() {
             loadAdditionalImages();
+            setNextUrls(); // Ustaw pełne URL dla formularzy
 
             // Ustaw linki do social media
             updateSocialLinks("https://www.instagram.com/zanariwood/", "https://www.facebook.com/profile.php?id=61582568185533");
@@ -1572,11 +1561,6 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 const productName = btn.closest('.item').querySelector('h3').textContent;
                 btn.addEventListener('click', () => openOutletModal(productName));
             });
-
-            // Dodaj obsługę formularzy - usuwamy preventDefault
-            document.getElementById('contactForm').addEventListener('submit', (e) => handleFormSubmit(e, 'contact'));
-            document.getElementById('orderForm').addEventListener('submit', (e) => handleFormSubmit(e, 'order'));
-            document.getElementById('outletForm').addEventListener('submit', (e) => handleFormSubmit(e, 'outlet'));
         });
     </script>
 </body>
