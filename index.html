@@ -138,7 +138,7 @@
             padding: 1.5rem;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* ZMIANA: Dodano box-shadow do transition */
             border-radius: 8px;
             position: relative;
         }
@@ -950,7 +950,7 @@
                 <h3>Satchel</h3>
                 <div class="gallery">
                     <!-- Torebka 1 - Havana Elegance smooth Satchel -->
-                    <div class="item">
+                    <div class="item" id="product-1">
                         <div class="product-id">1</div>
                         <div class="item-images">
                             <img src="zdjecia/torebka1a.jpg" alt="Havana Elegance smooth Satchel - widok 1" onclick="openModal(this)">
@@ -972,7 +972,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                     </div>
 
                     <!-- Torebka 2 - Heban Total smooth Satchel -->
-                    <div class="item">
+                    <div class="item" id="product-2">
                         <div class="product-id">2</div>
                         <div class="item-images">
                             <img src="zdjecia/torebka2a.jpg" alt="Heban Total smooth Satchel - widok 1" onclick="openModal(this)">
@@ -993,7 +993,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                     </div>
 
                     <!-- Torebka 3 - Natural Timber Glamour wave Satchel -->
-                    <div class="item">
+                    <div class="item" id="product-3">
                         <div class="product-id">3</div>
                         <div class="item-images">
                             <img src="zdjecia/torebka3a.jpg" alt="Natural Timber Glamour wave Satchel - widok 1" onclick="openModal(this)">
@@ -1018,7 +1018,7 @@ Elegancka torebka "kopertówka" wielkości z wymiennym łańcuszkiem na ramię i
                 <h3>Clutch</h3>
                 <div class="gallery">
                     <!-- Torebka 4 - Prestige Brown smooth Clutch -->
-                    <div class="item">
+                    <div class="item" id="product-4">
                         <div class="product-id">4</div>
                         <div class="item-images">
                             <img src="zdjecia/torebka4a.jpg" alt="Prestige Brown smooth Clutch - widok 1" onclick="openModal(this)">
@@ -1038,7 +1038,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o wyraf
                     </div>
 
                     <!-- Torebka 5 - Heban Total wave Clutch -->
-                    <div class="item">
+                    <div class="item" id="product-5">
                         <div class="product-id">5</div>
                         <div class="item-images">
                             <img src="zdjecia/torebka5a.jpg" alt="Heban Total wave Clutch - widok 1" onclick="openModal(this)">
@@ -1059,7 +1059,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o płyn
                     </div>
 
                     <!-- Torebka 6 - Natural Timber smooth Clutch -->
-                    <div class="item">
+                    <div class="item" id="product-6">
                         <div class="product-id">6</div>
                         <div class="item-images">
                             <img src="zdjecia/torebka6a.jpg" alt="Natural Timber smooth Clutch - widok 1" onclick="openModal(this)">
@@ -1159,7 +1159,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_next" value="" id="order-next">
-                <input type="hidden" name="product_url" id="order-product-url"> <!-- NOWOŚĆ: Ukryte pole dla linku do produktu -->
+                <input type="hidden" name="product_url" id="order-product-url">
                 <label for="product-name">Produkt:</label>
                 <input type="text" id="product-name" name="product" readonly>
                 <label for="contact-email">Email kontaktowy *</label>
@@ -1184,7 +1184,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_next" value="" id="outlet-next">
-                <input type="hidden" name="product_url" id="outlet-product-url"> <!-- NOWOŚĆ: Ukryte pole dla linku do produktu -->
+                <input type="hidden" name="product_url" id="outlet-product-url">
                 <label for="outlet-product-name">Produkt:</label>
                 <input type="text" id="outlet-product-name" name="product" readonly>
                 <label for="outlet-email">Email kontaktowy *</label>
@@ -1227,11 +1227,40 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             history.replaceState(null, null, ' ');
         }
 
-        // Sprawdź hash przy załadowaniu strony
+        // Funkcja do przewijania do produktu na podstawie hasha w URL-u
+        function scrollToProductFromHash() {
+            const hash = window.location.hash; // Pobierz hash z URL-a, np. #product-3
+            if (hash && hash.startsWith('#product-')) {
+                const productId = hash.substring(1); // Usuń #, np. product-3
+                const productElement = document.getElementById(productId);
+                if (productElement) {
+                    // Przewiń do elementu produktu
+                    productElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Wyróżnij produkt
+                    productElement.style.transition = 'box-shadow 0.5s ease';
+                    productElement.style.boxShadow = '0 0 20px rgba(201, 166, 107, 0.8)';
+                    setTimeout(() => {
+                        productElement.style.boxShadow = '0 4px 8px rgba(0,0,0,0.3)';
+                    }, 2000); // Usuń wyróżnienie po 2 sekundach
+                }
+            }
+        }
+
+        // Sprawdź hash przy załadowaniu strony i przy zmianie hasha
         window.addEventListener('load', function() {
             setNextUrls();
+            scrollToProductFromHash();
             if (window.location.hash === '#thank-you-page') {
                 showThankYouPage();
+            }
+        });
+
+        window.addEventListener('hashchange', function() {
+            scrollToProductFromHash();
+            if (window.location.hash === '#thank-you-page') {
+                showThankYouPage();
+            } else {
+                showMainPage();
             }
         });
 
@@ -1241,7 +1270,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             const orderModal = document.getElementById('orderModal');
             const productNameInput = document.getElementById('product-name');
             const orderMessage = document.getElementById('order-message');
-            const productUrlInput = document.getElementById('order-product-url'); // NOWOŚĆ
+            const productUrlInput = document.getElementById('order-product-url');
 
             if (orderModal && productNameInput && productUrlInput) {
                 // Znajdź ID produktu
@@ -1256,10 +1285,10 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
 
                 // Utwórz URL produktu
                 const baseUrl = window.location.href.split('#')[0];
-                const productUrl = `${baseUrl}#product-${productId}`; // NOWOŚĆ: Tworzenie linku z ID produktu
+                const productUrl = `${baseUrl}#product-${productId}`;
 
                 productNameInput.value = productName;
-                productUrlInput.value = productUrl; // NOWOŚĆ: Ustawienie linku w ukrytym polu
+                productUrlInput.value = productUrl;
                 orderMessage.value = `Chciałbym/chciałabym zapytać o dostępność produktu "${productName}". `;
                 orderModal.style.display = 'block';
             }
@@ -1274,7 +1303,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             const outletModal = document.getElementById('outletModal');
             const productNameInput = document.getElementById('outlet-product-name');
             const outletMessage = document.getElementById('outlet-message');
-            const productUrlInput = document.getElementById('outlet-product-url'); // NOWOŚĆ
+            const productUrlInput = document.getElementById('outlet-product-url');
 
             if (outletModal && productNameInput && productUrlInput) {
                 // Znajdź ID produktu i cenę
@@ -1300,10 +1329,10 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
 
                 // Utwórz URL produktu
                 const baseUrl = window.location.href.split('#')[0];
-                const productUrl = `${baseUrl}#product-${productId}`; // NOWOŚĆ: Tworzenie linku z ID produktu
+                const productUrl = `${baseUrl}#product-${productId}`;
 
                 productNameInput.value = productName;
-                productUrlInput.value = productUrl; // NOWOŚĆ: Ustawienie linku w ukrytym polu
+                productUrlInput.value = productUrl;
                 outletMessage.value = `Chciałbym/chciałabym otrzymać zdjęcia produktu "${productName}" oraz informacje o stanie tego produktu dostępnego w outlecie.${priceInfo}`;
                 outletModal.style.display = 'block';
             }
