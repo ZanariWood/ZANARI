@@ -138,7 +138,7 @@
             padding: 1.5rem;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* ZMIANA: Dodano box-shadow do transition */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-radius: 8px;
             position: relative;
         }
@@ -216,6 +216,7 @@
         .btn:hover {
             background: #b5915a;
         }
+        /* NOWE STYLE DLA MNIEJSZYCH PRZYCISKÓW */
         .btn-small {
             padding: 0.5rem 1rem;
             font-size: clamp(0.8rem, 1.8vw, 0.9rem);
@@ -260,6 +261,7 @@
             margin-top: 1rem;
             flex-wrap: wrap;
         }
+        /* UKRYTY NUMER PRODUKTU */
         .product-id {
             display: none;
             position: absolute;
@@ -295,6 +297,7 @@
             padding: 1.5rem;
             font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
+        /* Nowe style dla linków social media - bardziej czytelne */
         .social-link {
             color: #e8d5b5 !important;
             text-decoration: none;
@@ -460,6 +463,7 @@
             margin-top: 1rem;
             text-align: center;
         }
+        /* Modal zamówienia */
         .order-modal {
             display: none;
             position: fixed;
@@ -537,6 +541,7 @@
             margin-bottom: 1.5rem;
             font-style: italic;
         }
+        /* Nowy styl dla nagłówka modala zamówienia - mniejszy i pogrubiony */
         .order-modal-content h2 {
             font-family: 'Cinzel', serif;
             font-size: 1.4rem;
@@ -545,6 +550,7 @@
             color: #c9a66b;
             font-weight: bold;
         }
+        /* Modal outlet */
         .outlet-modal {
             display: none;
             position: fixed;
@@ -623,6 +629,8 @@
             color: #c9a66b;
             font-weight: bold;
         }
+
+        /* Styl dla strony z podziękowaniami */
         .thank-you-page {
             display: none;
             text-align: center;
@@ -653,6 +661,7 @@
         .thank-you-page .btn {
             margin-top: 1rem;
         }
+
         @media (max-width: 768px) {
             .intro {
                 flex-direction: column;
@@ -816,6 +825,21 @@
                 touch-action: none;
             }
         }
+        /* Nowe style dla trybu pojedynczego produktu */
+        .single-product-mode .gallery .item {
+            display: none;
+        }
+        .single-product-mode .gallery .item.active-product {
+            display: block;
+        }
+        .single-product-mode .gallery {
+            grid-template-columns: 1fr;
+        }
+        .single-product-mode #back-to-collection {
+            display: block;
+            margin: 2rem auto;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -833,7 +857,7 @@
                 <div class="intro-description">
                     <h2>Witamy w świecie Zanari</h2>
                     <p>Dla dystyngowanych kobiet, które cenią sobie unikalność i luksus. Nasze torebki powstają z najwyższej jakości drewna, ręcznie wykonywane z dbałością o każdy detal. Każda jest wyjątkowym i niepowtarzalnym dziełem sztuki – ekologiczna, elegancka i ponadczasowa.</p>
-                    <p>Wyobraź sobie, jak trzymasz w dłoni unikalny skarb natury, który podkreśla Twoją elegancję, wyjątkowość i niepowtarzalny styl. Torebka Zanari to nie tylko dodatek – to symbol Twojej siły, piękna i ponadczasowej klasy, który sprawi, że poczujesz się wyjątkowa w każdym momencie. Nie czekaj, zainwestuj w luksus, na który zasługujesz – stań się posiadaczką niepowtarzalnego dzieła sztuki, które przyciąga spojrzenia i budzi podziw.</p>
+                    <p>Wyobraź sobie, jak trzymasz w dłoni unikalny skarb natury, który podkreśla Twoją elegancję, wyjątkowość i niepowtarzalny styl. Torebka Zanari to nie tylko dodatek – to symbol Twojej siły, piękna i ponadczasowej klasy, który sprawi, że poczujesz się wyjątkowa w każdym momente. Nie czekaj, zainwestuj in luksus, na który zasługujesz – stań się posiadaczką niepowtarzalnego dzieła sztuki, które przyciąga spojrzenia i budzi podziw.</p>
                     <a href="#kolekcja" class="btn">Odkryj kolekcję</a>
                 </div>
                 <div class="intro-video">
@@ -944,9 +968,10 @@
                     <li>Ekskluzywną personalizację – grawerunek rodowego monogramu lub unikatowego motywu.</li>
                     <li>Architekturę detalu – kształt zapięcia, profil boków – każdy element poddajemy Twojej wizji.</li>
                 </ul>
-                <p>Twój indywidualny smak i styl, zamknięty w formie niepowtarzalnego przedmiotu.</p>
+                <p>Twój indywidualny smak i styl, zamknięty в formie niepowtarzalnego przedmiotu.</p>
                 <p><br><br></p>
                 <h2>Kolekcje</h2>
+                <button id="back-to-collection" class="btn" style="display: none;">Powrót do kolekcji</button>
                 <h3>Satchel</h3>
                 <div class="gallery">
                     <!-- Torebka 1 - Havana Elegance smooth Satchel -->
@@ -1159,16 +1184,20 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_next" value="" id="order-next">
-                <input type="hidden" name="product_url" id="order-product-url">
+                <input type="hidden" name="product_url" id="order-product-url"> <!-- NOWOŚĆ: Ukryte pole dla linku do produktu -->
                 <label for="product-name">Produkt:</label>
                 <input type="text" id="product-name" name="product" readonly>
+
                 <label for="contact-email">Email kontaktowy *</label>
                 <input type="email" id="contact-email" name="email" placeholder="Twój adres email" required>
+
                 <label for="contact-phone">Numer telefonu (opcjonalnie)</label>
                 <input type="tel" id="contact-phone" name="phone" placeholder="Twój numer telefonu">
+
                 <label for="order-message">Wiadomość:</label>
                 <textarea id="order-message" name="message" placeholder="Twoja wiadomość..." required></textarea>
                 <p class="form-note">Prosimy o informację dotyczącą dostępności produktu oraz wszelkie dodatkowe pytania lub uwagi.</p>
+
                 <button type="submit">Wyślij</button>
             </form>
         </div>
@@ -1184,15 +1213,21 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_next" value="" id="outlet-next">
-                <input type="hidden" name="product_url" id="outlet-product-url">
+
+                <input type="hidden" name="product_url" id="outlet-product-url"> <!-- NOWOŚĆ: Ukryte pole dla linku do produktu -->
+
                 <label for="outlet-product-name">Produkt:</label>
                 <input type="text" id="outlet-product-name" name="product" readonly>
+
                 <label for="outlet-email">Email kontaktowy *</label>
                 <input type="email" id="outlet-email" name="email" placeholder="Twój adres email" required>
+
                 <label for="outlet-phone">Numer telefonu (opcjonalnie)</label>
                 <input type="tel" id="outlet-phone" name="phone" placeholder="Twój numer telefonu">
+
                 <label for="outlet-message">Wiadomość:</label>
                 <textarea id="outlet-message" name="message" placeholder="Chciałbym/chciałabym otrzymać zdjęcia produktu oraz informacje o stanie tego produktu dostępnego w outlecie." required></textarea>
+
                 <button type="submit">Wyślij zapytanie</button>
             </form>
         </div>
@@ -1201,10 +1236,29 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
     <script>
         // ==================== OBSŁUGA FORMULARZY ====================
 
+        // Funkcja do obsługi wysyłania formularzy
+        function handleFormSubmit(event, formType) {
+            // Usuwamy preventDefault() aby formularze mogły być wysłane normalnie
+            // event.preventDefault();
         // Funkcja do ustawiania pełnego URL dla parametru _next
         function setNextUrls() {
             const baseUrl = window.location.href.split('#')[0];
             const thankYouUrl = baseUrl + '#thank-you-page';
+
+            // Zamknij modal przed wysłaniem
+            if (formType === 'contact') {
+                closeContactModal();
+            } else if (formType === 'order') {
+                closeOrderModal();
+            } else if (formType === 'outlet') {
+                closeOutletModal();
+            }
+            
+            // Pokaż stronę z podziękowaniami
+            showThankYouPage();
+            
+            // Pozwól formularzowi na normalne wysłanie
+            return true;
             document.getElementById('contact-next').value = thankYouUrl;
             document.getElementById('order-next').value = thankYouUrl;
             document.getElementById('outlet-next').value = thankYouUrl;
@@ -1215,6 +1269,8 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             document.getElementById('main-page').style.display = 'none';
             document.getElementById('thank-you-page').style.display = 'block';
             window.scrollTo(0, 0);
+            
+            // Dodajemy hash do URL, aby FormSubmit mógł przekierować z powrotem
             window.location.hash = 'thank-you-page';
         }
 
@@ -1224,97 +1280,35 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             document.getElementById('main-page').style.display = 'block';
             window.scrollTo(0, 0);
             window.location.hash = '';
+            // Usuwamy hash z URL
             history.replaceState(null, null, ' ');
         }
 
-        // Funkcja do przewijania do produktu na podstawie hasha w URL-u
-        function scrollToProductFromHash() {
-            const hash = window.location.hash; // Pobierz hash z URL-a, np. #product-3
-            if (hash && hash.startsWith('#product-')) {
-                const productId = hash.substring(1); // Usuń #, np. product-3
-                const productElement = document.getElementById(productId);
-                if (productElement) {
-                    // Przewiń do elementu produktu
-                    productElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    // Wyróżnij produkt
-                    productElement.style.transition = 'box-shadow 0.5s ease';
-                    productElement.style.boxShadow = '0 0 20px rgba(201, 166, 107, 0.8)';
-                    setTimeout(() => {
-                        productElement.style.boxShadow = '0 4px 8px rgba(0,0,0,0.3)';
-                    }, 2000); // Usuń wyróżnienie po 2 sekundach
-                }
-            }
-        }
-
-        // Sprawdź hash przy załadowaniu strony i przy zmianie hasha
+        // Sprawdź hash przy załadowaniu strony
         window.addEventListener('load', function() {
-            setNextUrls();
-            scrollToProductFromHash();
+            setNextUrls(); // Ustaw pełne URL dla formularzy
             if (window.location.hash === '#thank-you-page') {
                 showThankYouPage();
             }
         });
 
-        window.addEventListener('hashchange', function() {
-            scrollToProductFromHash();
-            if (window.location.hash === '#thank-you-page') {
-                showThankYouPage();
-            } else {
-                showMainPage();
-            }
-        });
-
-        // ==================== FUNKCJE ORDER I OUTLET ====================
-
-        function openOrderModal(productName) {
-            const orderModal = document.getElementById('orderModal');
-            const productNameInput = document.getElementById('product-name');
-            const orderMessage = document.getElementById('order-message');
-            const productUrlInput = document.getElementById('order-product-url');
-
-            if (orderModal && productNameInput && productUrlInput) {
-                // Znajdź ID produktu
-                const items = document.querySelectorAll('.item');
-                let productId = '';
-                for (let item of items) {
-                    if (item.querySelector('h3').textContent === productName) {
-                        productId = item.querySelector('.product-id').textContent;
-                        break;
-                    }
-                }
-
-                // Utwórz URL produktu
-                const baseUrl = window.location.href.split('#')[0];
-                const productUrl = `${baseUrl}#product-${productId}`;
-
-                productNameInput.value = productName;
-                productUrlInput.value = productUrl;
-                orderMessage.value = `Chciałbym/chciałabym zapytać o dostępność produktu "${productName}". `;
-                orderModal.style.display = 'block';
-            }
-        }
-
-        function closeOrderModal() {
-            const orderModal = document.getElementById('orderModal');
-            if (orderModal) orderModal.style.display = 'none';
-        }
+        // ==================== FUNKCJE OUTLET ====================
 
         function openOutletModal(productName) {
             const outletModal = document.getElementById('outletModal');
             const productNameInput = document.getElementById('outlet-product-name');
             const outletMessage = document.getElementById('outlet-message');
-            const productUrlInput = document.getElementById('outlet-product-url');
 
-            if (outletModal && productNameInput && productUrlInput) {
-                // Znajdź ID produktu i cenę
+            if (outletModal && productNameInput) {
+                // Znajdź cenę produktu tylko jeśli przycisk outlet jest aktywny
                 let priceInfo = '';
-                let productId = '';
                 const items = document.querySelectorAll('.item');
+
                 for (let item of items) {
                     const itemName = item.querySelector('h3').textContent;
                     if (itemName === productName) {
-                        productId = item.querySelector('.product-id').textContent;
                         const outletBtn = item.querySelector('.btn-outlet');
+                        // Sprawdź czy przycisk outlet jest aktywny (nie ma disabled)
                         if (outletBtn && !outletBtn.disabled) {
                             const priceText = item.querySelector('strong').textContent;
                             const originalPrice = parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
@@ -1327,12 +1321,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                     }
                 }
 
-                // Utwórz URL produktu
-                const baseUrl = window.location.href.split('#')[0];
-                const productUrl = `${baseUrl}#product-${productId}`;
-
                 productNameInput.value = productName;
-                productUrlInput.value = productUrl;
                 outletMessage.value = `Chciałbym/chciałabym otrzymać zdjęcia produktu "${productName}" oraz informacje o stanie tego produktu dostępnego w outlecie.${priceInfo}`;
                 outletModal.style.display = 'block';
             }
@@ -1390,6 +1379,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
         let slideIndex = 0;
         let currentImages = [];
 
+        // Funkcja do sprawdzania czy obrazek istnieje
         function imageExists(url) {
             return new Promise((resolve) => {
                 const img = new Image();
@@ -1399,16 +1389,24 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             });
         }
 
+        // Funkcja do ładowania dodatkowych zdjęć (do litery f)
         async function loadAdditionalImages() {
             const items = document.querySelectorAll('.item');
+
             for (let i = 0; i < items.length; i++) {
                 const item = items[i];
                 const additionalContainer = item.querySelector('.additional-images');
                 const baseImageSrc = item.querySelector('.item-images img').src;
+
+                // Pobierz bazową nazwę pliku (bez rozszerzenia i ostatniej litery)
                 const basePath = baseImageSrc.substring(0, baseImageSrc.lastIndexOf('.'));
-                const baseName = basePath.substring(0, basePath.length - 1);
+                const baseName = basePath.substring(0, basePath.length - 1); // Usuń ostatnią literę (a/b)
+
+                // Lista możliwych dodatkowych zdjęć (c, d, e, f)
                 const additionalLetters = ['c', 'd', 'e', 'f'];
                 let existingImages = [];
+
+                // Sprawdź które zdjęcia istnieją
                 for (const letter of additionalLetters) {
                     const imageUrl = baseName + letter + '.jpg';
                     const exists = await imageExists(imageUrl);
@@ -1416,6 +1414,8 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                         existingImages.push({ url: imageUrl, letter: letter });
                     }
                 }
+
+                // Dodaj tylko te zdjęcia które istnieją
                 for (const imgData of existingImages) {
                     const imgElement = document.createElement('img');
                     imgElement.src = imgData.url;
@@ -1423,6 +1423,8 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                     imgElement.onclick = function() { openModal(this); };
                     additionalContainer.appendChild(imgElement);
                 }
+
+                // Jeśli nie ma żadnych dodatkowych zdjęć, ukryj kontener
                 if (existingImages.length === 0) {
                     additionalContainer.style.display = 'none';
                 }
@@ -1435,6 +1437,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             if (!modal || !modalImg) return;
             modal.style.display = 'flex';
             modalImg.src = img.src;
+
             if (img.src.includes('logo.png')) {
                 currentImages = [document.querySelector('.logo img')];
                 slideIndex = 0;
@@ -1471,24 +1474,54 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             }
         }
 
+        // Funkcje dla modala zamówienia
+        function openOrderModal(productName) {
+            const orderModal = document.getElementById('orderModal');
+            const productNameInput = document.getElementById('product-name');
+            const orderMessage = document.getElementById('order-message');
+
+            if (orderModal && productNameInput) {
+                productNameInput.value = productName;
+                orderMessage.value = `Chciałbym/chciałabym zapytać o dostępność produktu "${productName}". `;
+                orderModal.style.display = 'block';
+            }
+        }
+
+        function closeOrderModal() {
+            const orderModal = document.getElementById('orderModal');
+            if (orderModal) orderModal.style.display = 'none';
+        }
+
+        // Funkcja do aktualizacji linków społecznościowych
         function updateSocialLinks(instagramUrl = "https://www.instagram.com/zanariwood/", facebookUrl = "https://www.facebook.com/profile.php?id=61582568185533") {
+            // Linki w sekcji kontakt na głównej stronie
             document.getElementById('main-instagram').href = instagramUrl;
             document.getElementById('main-facebook').href = facebookUrl;
+
+            // Linki w footerze
             document.getElementById('footer-instagram').href = instagramUrl;
             document.getElementById('footer-facebook').href = facebookUrl;
+
+            // Linki w modal kontaktowy
             document.getElementById('contact-instagram').href = instagramUrl;
             document.getElementById('contact-facebook').href = facebookUrl;
         }
 
+        // Funkcja do powiększania/zmniejszania obrazka procesu rzemieślniczego
         function toggleZoom(img) {
             img.classList.toggle('zoomed');
+
             if (img.classList.contains('zoomed')) {
+                // Blokujemy scrollowanie strony gdy obrazek jest powiększony
                 document.body.style.overflow = 'hidden';
+                // Dodajemy możliwość zamknięcia przez dotknięcie gdziekolwiek
                 setTimeout(() => {
                     document.addEventListener('click', closeZoomOnClick);
                 }, 100);
             } else {
+                // Przywracamy scrollowanie
                 document.body.style.overflow = 'auto';
+                // Usuwamy listener
                 document.removeEventListener('click', closeZoomOnClick);
             }
         }
@@ -1502,6 +1535,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             }
         }
 
+        // Zamykanie powiększonego obrazka klawiszem ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 const craftsmanshipImg = document.querySelector('.craftsmanship img.zoomed');
@@ -1510,10 +1544,12 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
                     document.body.style.overflow = 'auto';
                     document.removeEventListener('click', closeZoomOnClick);
                 }
+
                 const orderModal = document.getElementById('orderModal');
                 if (orderModal && orderModal.style.display === 'block') {
                     closeOrderModal();
                 }
+
                 const outletModal = document.getElementById('outletModal');
                 if (outletModal && outletModal.style.display === 'block') {
                     closeOutletModal();
@@ -1526,6 +1562,7 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             const contactModal = document.getElementById('contactModal');
             const orderModal = document.getElementById('orderModal');
             const outletModal = document.getElementById('outletModal');
+
             if (event.target == modal) {
                 closeModal();
             }
@@ -1550,14 +1587,22 @@ Kompaktowa torebka wizytowa z wymiennym łańcuszkiem na ramię i klapą o klasy
             if (contactModal) contactModal.style.display = 'none';
         }
 
+        // Załaduj dodatkowe zdjęcia i ustaw linki społecznościowe po załadowaniu strony
         document.addEventListener('DOMContentLoaded', function() {
             loadAdditionalImages();
             setNextUrls();
             updateSocialLinks("https://www.instagram.com/zanariwood/", "https://www.facebook.com/profile.php?id=61582568185533");
+
+            // Dodaj event listenery dla aktywnych przycisków outlet
             document.querySelectorAll('.btn-outlet:not(:disabled)').forEach(btn => {
                 const productName = btn.closest('.item').querySelector('h3').textContent;
                 btn.addEventListener('click', () => openOutletModal(productName));
             });
+
+            // Dodaj obsługę formularzy - usuwamy preventDefault
+            document.getElementById('contactForm').addEventListener('submit', (e) => handleFormSubmit(e, 'contact'));
+            document.getElementById('orderForm').addEventListener('submit', (e) => handleFormSubmit(e, 'order'));
+            document.getElementById('outletForm').addEventListener('submit', (e) => handleFormSubmit(e, 'outlet'));
         });
     </script>
 </body>
